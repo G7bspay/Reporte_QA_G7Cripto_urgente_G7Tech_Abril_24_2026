@@ -1,0 +1,2 @@
+# Reporte_QA_G7Cripto_urgente_G7Tech_Abril_24_2026
+Reporte_QA_G7Cripto_urgente_G7Tech_Abril_24_2026
