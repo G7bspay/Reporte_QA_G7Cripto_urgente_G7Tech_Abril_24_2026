@@ -1,0 +1,744 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Reporte QA + Ruta de Trabajo Urgente | G7Cripto | G7Tech</title>
+<style>
+  :root{
+    --bg:#f5f7fb;
+    --card:#ffffff;
+    --text:#182230;
+    --muted:#5b6b80;
+    --border:#d7dee8;
+    --blue:#0b3d91;
+    --blue2:#1447d1;
+    --green:#0e9f6e;
+    --yellow:#d97706;
+    --red:#dc2626;
+    --purple:#6d28d9;
+    --shadow:0 10px 30px rgba(16,24,40,.08);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font:15px/1.55 Inter, Arial, Helvetica, sans-serif;
+  }
+  .page{
+    max-width:1200px;
+    margin:0 auto;
+    padding:28px 22px 80px;
+  }
+  .hero{
+    background:linear-gradient(135deg,#0a1e4a 0%, #0b3d91 55%, #1d4ed8 100%);
+    color:#fff;
+    border-radius:22px;
+    padding:30px 30px 26px;
+    box-shadow:var(--shadow);
+  }
+  .hero h1{
+    margin:0 0 8px;
+    font-size:34px;
+    line-height:1.1;
+  }
+  .hero p{
+    margin:8px 0;
+    opacity:.96;
+  }
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+  .chip{
+    padding:8px 12px;border-radius:999px;
+    background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.22);
+    font-size:13px;
+  }
+  .notice{
+    margin-top:16px;
+    padding:14px 16px;
+    background:rgba(255,255,255,.12);
+    border-left:4px solid #fff;
+    border-radius:14px;
+  }
+  h2{
+    font-size:28px;
+    margin:34px 0 14px;
+    color:#0f172a;
+  }
+  h3{
+    font-size:21px;
+    margin:26px 0 10px;
+    color:#0f172a;
+  }
+  h4{
+    font-size:17px;
+    margin:22px 0 8px;
+    color:#0f172a;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(12,1fr);
+    gap:16px;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:18px;
+    box-shadow:var(--shadow);
+    padding:18px 18px 16px;
+  }
+  .span-12{grid-column:span 12}
+  .span-8{grid-column:span 8}
+  .span-7{grid-column:span 7}
+  .span-6{grid-column:span 6}
+  .span-5{grid-column:span 5}
+  .span-4{grid-column:span 4}
+  .span-3{grid-column:span 3}
+  @media (max-width:900px){
+    .span-8,.span-7,.span-6,.span-5,.span-4,.span-3{grid-column:span 12}
+    .hero h1{font-size:28px}
+  }
+  ul{margin:8px 0 8px 20px}
+  li{margin:4px 0}
+  .small{font-size:13px;color:var(--muted)}
+  .muted{color:var(--muted)}
+  .kpis{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-top:16px;
+  }
+  @media (max-width:900px){ .kpis{grid-template-columns:repeat(2,1fr)} }
+  .kpi{
+    background:#f8fafc;
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:16px;
+  }
+  .kpi .num{font-size:28px;font-weight:800;line-height:1}
+  .kpi .label{margin-top:6px;color:var(--muted);font-size:13px}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:6px 12px;border-radius:999px;font-size:12px;font-weight:700
+  }
+  .red{background:#fee2e2;color:#991b1b}
+  .orange{background:#ffedd5;color:#9a3412}
+  .yellow{background:#fef3c7;color:#92400e}
+  .green{background:#dcfce7;color:#166534}
+  .blue{background:#dbeafe;color:#1d4ed8}
+  .purple{background:#ede9fe;color:#6d28d9}
+  .table-wrap{overflow:auto}
+  table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:14px;
+    min-width:900px;
+  }
+  th,td{
+    border:1px solid var(--border);
+    padding:10px 10px;
+    vertical-align:top;
+  }
+  th{
+    background:#eff6ff;
+    color:#0f172a;
+    text-align:left;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.02em;
+  }
+  .priority{
+    font-weight:800;
+    padding:4px 8px;
+    border-radius:999px;
+    display:inline-block;
+    font-size:12px;
+  }
+  .p-red{background:#fee2e2;color:#991b1b}
+  .p-orange{background:#ffedd5;color:#9a3412}
+  .p-yellow{background:#fef3c7;color:#92400e}
+  .p-green{background:#dcfce7;color:#166534}
+  .section{
+    border-left:6px solid var(--blue2);
+    padding-left:14px;
+    margin:24px 0 10px;
+  }
+  .timeline{
+    margin:0;
+    padding-left:0;
+    list-style:none;
+  }
+  .timeline li{
+    position:relative;
+    padding:0 0 14px 22px;
+  }
+  .timeline li:before{
+    content:"";
+    position:absolute;left:3px;top:8px;
+    width:10px;height:10px;border-radius:50%;background:var(--blue2);
+  }
+  .timeline li:after{
+    content:"";
+    position:absolute;left:7px;top:18px;bottom:-2px;width:2px;background:#dbeafe;
+  }
+  .timeline li:last-child:after{display:none}
+  .callout{
+    background:#eff6ff;
+    border:1px solid #bfdbfe;
+    border-radius:16px;
+    padding:14px 16px;
+  }
+  .danger{
+    background:#fef2f2;
+    border:1px solid #fecaca;
+  }
+  .success{
+    background:#f0fdf4;
+    border:1px solid #bbf7d0;
+  }
+  .foot{
+    margin-top:40px;
+    color:var(--muted);
+    font-size:12px;
+    text-align:center;
+  }
+  .two-col{
+    columns:2 320px;
+    column-gap:24px;
+  }
+  .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:13px}
+  .hr{height:1px;background:var(--border);margin:16px 0}
+</style>
+</head>
+<body>
+<div class="page">
+  <section class="hero">
+    <h1>G7Cripto · Reporte QA Detallado + Ruta de Trabajo Urgente</h1>
+    <p><strong>Dirigido a:</strong> Equipo G7Tech</p>
+    <p><strong>Responsables internos de esta ruta:</strong> Carlos Cárdenas · Aaron Murillo · David Rodríguez</p>
+    <p><strong>Propósito:</strong> activar de inmediato los cambios necesarios para corregir fallas críticas, publicar un parche urgente y alinear la operación real del producto con la experiencia del usuario, el cumplimiento legal y la ruta estratégica del 24 de marzo de 2026.</p>
+    <div class="chips">
+      <span class="chip">Producto exclusivo para streaming adulto</span>
+      <span class="chip">Wallets automáticas: USDT · USDC · BTC</span>
+      <span class="chip">QR + copy/paste ya disponibles</span>
+      <span class="chip">Modo blanco recomendado para el release inmediato</span>
+      <span class="chip">Soporte de venta / payout obligatorio</span>
+      <span class="chip">Dashboard debe reflejar ingreso a wallet</span>
+    </div>
+    <div class="notice">
+      <strong>Acción inmediata requerida:</strong> este reporte está diseñado para que el equipo G7Tech inicie hoy mismo las correcciones. El objetivo del siguiente release no es “dejar todo perfecto”, sino corregir lo que hoy rompe confianza, bloquea el flujo o afecta cumplimiento.
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card span-12">
+      <h2 style="margin-top:0">0. Alcance y fuentes consolidadas</h2>
+      <p>Este documento consolida el <strong>100% de la información levantada en este chat</strong> durante el proceso QA:</p>
+      <ul>
+        <li>Capturas de App Store / Play Store y materiales públicos.</li>
+        <li>Pantallas internas de onboarding, registro, login, soporte, dashboard, wallet, monetización, liquidación, perfil, cuentas bancarias y facturación.</li>
+        <li>Notas individuales del equipo: Andrés Felipe, Orlando, Andrés Holguín, Hammer Tapias, Jhonny Villegas, Gladys, Claudia, Rosbeny, Andrea Cardona, Carlos Cárdenas, Kevin Barragán, Aaron Murillo, Guillermo y Luisa Vallejo.</li>
+        <li>Pruebas reales de recepción de 5 USDT, visualización de saldo, monetización, aprobación y bloqueo de liquidación.</li>
+        <li>Video de revisión visual en <strong>modo oscuro</strong> y video de revisión visual en <strong>modo blanco</strong>.</li>
+        <li>Notas de la reunión del 23 de abril de 2026 y correo PDF con ajustes de la app.</li>
+        <li>Referencia estratégica: <strong>G7Tech_Ruta_Trabajo_G7Cripto_v4_Marzo 24 2026</strong> (Bitrix_103334), usada para contrastar qué sí se cumplió y qué sigue pendiente.</li>
+      </ul>
+      <div class="kpis">
+        <div class="kpi"><div class="num">100%</div><div class="label">Información de este chat integrada al análisis</div></div>
+        <div class="kpi"><div class="num">2</div><div class="label">Fases operativas evaluadas (wallet + monetización/liquidación)</div></div>
+        <div class="kpi"><div class="num">6</div><div class="label">Wallets confirmadas con prueba de envío de 5 USDT</div></div>
+        <div class="kpi"><div class="num">12</div><div class="label">Prioridades estratégicas contrastadas contra la ruta del 24 de marzo</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" style="margin-top:18px">
+    <h2 style="margin-top:0">1. Resumen ejecutivo QA</h2>
+    <p><strong>Conclusión principal:</strong> G7Cripto ya tiene una base funcional real, pero todavía no está lista para relanzarse masivamente sin un parche urgente. La app hoy sí demuestra capacidad de crear wallets, recibir fondos, mostrar movimientos y llevar algunos casos hasta monetización aprobada; sin embargo, persisten problemas críticos de marca, visualización en dark mode, claridad del flujo wallet-first, soporte obligatorio, notificaciones, recuperación de contraseña y bloqueo de liquidación por monto mínimo.</p>
+    <p>La corrección más importante de este QA es operativa y legal: <strong>G7Cripto no debe comunicarse como un flujo totalmente automático sin soporte</strong>. Al ser un producto exclusivo para streaming adulto, el usuario sí debe subir soporte de venta o payout de la plataforma. Solo después de la validación interna ese valor debe quedar aprobado en USD para liquidación. El sistema sí debe mostrar que la wallet recibió fondos, pero no debe presentar ese valor como “libre para pago” sin pasar por soporte, validación y aprobación.</p>
+    <div class="callout">
+      <strong>Decisión recomendada para el release inmediato:</strong> priorizar la experiencia en <strong>modo blanco</strong>, que se ve mucho más clara y publicable que dark mode; corregir marca, acceso, wallet, soportes, notificaciones y regla mínima de liquidación; y dejar dark mode como frente de ajuste inmediato pero no como referencia principal de publicación.
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card span-7">
+      <h2 style="margin-top:0">2. Flujo oficial corregido del producto</h2>
+      <ol>
+        <li>El cliente genera su wallet en G7Cripto.</li>
+        <li>Luego registra esa wallet en su plataforma de streaming.</li>
+        <li>La plataforma realiza el pago.</li>
+        <li>El cliente debe recibir notificación de que ingresaron fondos.</li>
+        <li>El Dashboard también debe reflejar que esa wallet recibió fondos.</li>
+        <li>El cliente entra a la app y sube el soporte de venta o payout desde la plataforma.</li>
+        <li>El equipo interno valida el soporte.</li>
+        <li>Una vez validado, el pago queda aprobado para reflejarse en saldo en USD.</li>
+        <li>El cliente solicita la liquidación.</li>
+        <li>Tesorería carga el pago, finanzas lo procesa y luego se reconcilia la operación.</li>
+      </ol>
+      <div class="danger callout">
+        <strong>Aclaración crítica:</strong> el saldo no debe pasar a “USD libre para pagar” solo por haber llegado a la wallet. Primero debe existir soporte, validación y aprobación interna.
+      </div>
+    </div>
+    <div class="card span-5">
+      <h2 style="margin-top:0">3. Qué ya existe hoy</h2>
+      <ul>
+        <li>Generación automática de wallets.</li>
+        <li>Tipos de wallet actualmente visibles: <strong>USDT, USDC y BTC</strong>.</li>
+        <li>Visualización de <strong>QR</strong>.</li>
+        <li>Opción de <strong>copy/paste</strong> de la dirección.</li>
+        <li>Recepción real de fondos de prueba en varios usuarios.</li>
+        <li>Historial de depósitos y detalle del movimiento en wallet.</li>
+        <li>Paso posterior a saldo / monetización en algunos casos.</li>
+      </ul>
+      <div class="success callout">
+        <strong>Lectura QA:</strong> la visión estratégica wallet-first sí está avanzada. El problema principal ya no es “si existe”, sino <strong>cómo se entiende, cómo se valida y cómo se cierra correctamente la operación</strong>.
+      </div>
+    </div>
+  </section>
+
+  <section class="card" style="margin-top:18px">
+    <h2 style="margin-top:0">4. Contraste contra la Ruta de Trabajo de Marzo 24, 2026</h2>
+    <p class="muted">La ruta estratégica del 24 de marzo marcó P3, P4, P5, P8, P9, P10 y P11 como “actualizado”. El QA actual muestra que varios de esos frentes sí avanzaron, pero no todos están cerrados de forma operativa o visual.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>P#</th>
+            <th>Frente de la ruta de marzo</th>
+            <th>Estado en la ruta del 24/03</th>
+            <th>Estado real hallado en este QA</th>
+            <th>Conclusión</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>P1</td>
+            <td>Cambio de nombre: G7BSPay LATAM → G7Cripto</td>
+            <td>No aparece cerrado</td>
+            <td>Persisten G7Pay, G7BsPay, logos viejos y referencias antiguas</td>
+            <td><span class="priority p-red">Pendiente crítico</span></td>
+          </tr>
+          <tr>
+            <td>P2</td>
+            <td>Transferencia societaria y respaldo legal correcto</td>
+            <td>No aparece cerrado</td>
+            <td>Siguen apareciendo razones sociales / textos anteriores en varios puntos</td>
+            <td><span class="priority p-red">Pendiente crítico</span></td>
+          </tr>
+          <tr>
+            <td>P3</td>
+            <td>Rediseño de imágenes y descripción en App Store</td>
+            <td>Actualizado</td>
+            <td>Hay avances, pero siguen descripciones viejas, ícono pequeño y naming mezclado</td>
+            <td><span class="priority p-orange">Avance parcial</span></td>
+          </tr>
+          <tr>
+            <td>P4</td>
+            <td>Landing pages y contenido</td>
+            <td>Actualizado</td>
+            <td>Estratégicamente avanzado, pero aún requiere alinear discurso real del producto</td>
+            <td><span class="priority p-orange">Avance parcial</span></td>
+          </tr>
+          <tr>
+            <td>P5</td>
+            <td>Perfilamiento del usuario al descargar la app</td>
+            <td>Actualizado</td>
+            <td>Definido en la ruta, pero en QA aún se pide reforzar el filtro streaming / FOMENTOR</td>
+            <td><span class="priority p-orange">Avance parcial</span></td>
+          </tr>
+          <tr>
+            <td>P6</td>
+            <td>Firma de contratos práctica y eficiente</td>
+            <td>No aparece cerrado</td>
+            <td>Hay observaciones de contratos, textos legales y razón social; sigue abierto</td>
+            <td><span class="priority p-red">Pendiente crítico</span></td>
+          </tr>
+          <tr>
+            <td>P7</td>
+            <td>Flujo de creación de wallet tras aprobación</td>
+            <td>No aparece como actualizado</td>
+            <td>Hoy sí existe generación automática de wallet con QR y copy, pero UX todavía es confusa</td>
+            <td><span class="priority p-yellow">Funcional con ajustes urgentes</span></td>
+          </tr>
+          <tr>
+            <td>P8</td>
+            <td>Wallets propias, KYC Binance y visualización de saldos</td>
+            <td>Actualizado</td>
+            <td>Avance alto: wallets por cliente, recepción y movimientos; aún con estados ambiguos y notificaciones inconsistentes</td>
+            <td><span class="priority p-yellow">Avance alto, no cerrado</span></td>
+          </tr>
+          <tr>
+            <td>P9</td>
+            <td>Monetización y aprobación manteniendo flujo actual</td>
+            <td>Actualizado</td>
+            <td>Se confirma que el flujo actual sigue, pero faltaba dejar clarísimo el soporte obligatorio</td>
+            <td><span class="priority p-yellow">Activo, requiere claridad</span></td>
+          </tr>
+          <tr>
+            <td>P10</td>
+            <td>Dashboard: análisis, corrección y cotización</td>
+            <td>Actualizado</td>
+            <td>El Dashboard participa en operación, pero aún debe reflejar mejor wallet, soporte y estados</td>
+            <td><span class="priority p-orange">Avance parcial</span></td>
+          </tr>
+          <tr>
+            <td>P11</td>
+            <td>Sistema de referidos</td>
+            <td>Actualizado</td>
+            <td>Fuera del foco del release urgente</td>
+            <td><span class="priority p-green">No prioritario para mañana</span></td>
+          </tr>
+          <tr>
+            <td>P12</td>
+            <td>Actualización de contratos y textos legales</td>
+            <td>No aparece cerrado</td>
+            <td>Hallazgos repetidos de textos legales viejos, empresa incorrecta y contratos por revisar</td>
+            <td><span class="priority p-red">Pendiente crítico</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card" style="margin-top:18px">
+    <h2 style="margin-top:0">5. Hallazgos QA consolidados</h2>
+
+    <div class="section"><h3 style="margin:0">5.1. Fallas críticas funcionales</h3></div>
+    <ul>
+      <li><strong>Marca inconsistente:</strong> “Bienvenid@ a G7Pay”, “G7BsPay”, logos viejos y naming mezclado en app, validación y tienda.</li>
+      <li><strong>Dark mode débil:</strong> baja legibilidad, contraste pobre, íconos y títulos poco visibles, tonos fuera de marca.</li>
+      <li><strong>Recuperación de contraseña inestable:</strong> el código llega, pero puede fallar la validación; campos sin buena visualización; falta mostrar/ocultar contraseña en algunas vistas.</li>
+      <li><strong>Wallet poco clara para usuario nuevo:</strong> varios testers no entendieron cómo crearla, dónde empezar o qué significan los estados.</li>
+      <li><strong>Scroll Android:</strong> en algunos dispositivos no se podía llegar al punto donde se crea la wallet o al final del flujo.</li>
+      <li><strong>Notificaciones inconsistentes:</strong> varios usuarios no recibieron aviso al llegar fondos; otros sí recibieron correo y teléfono.</li>
+      <li><strong>Soporte obligatorio poco claro:</strong> si el usuario no sube soporte, la operación se rechaza; pero la app no deja suficientemente claro el requisito ni el estado del soporte.</li>
+      <li><strong>Mínimo de liquidación:</strong> la regla de $20 USD bloqueó la fase 2 con montos reales de 4–5 USD.</li>
+      <li><strong>Selector de plataforma ambiguo:</strong> el usuario no siempre sabe qué plataforma escoger al monetizar.</li>
+      <li><strong>Edición de datos:</strong> se evidenció al menos un error al actualizar perfil.</li>
+    </ul>
+
+    <div class="section"><h3 style="margin:0">5.2. Hallazgos visuales en modo oscuro</h3></div>
+    <ul>
+      <li>Es el problema visual más repetido.</li>
+      <li>Los textos, títulos, botones e íconos se pierden demasiado sobre negro.</li>
+      <li>El menú lateral y el menú inferior se sienten pesados y compiten con el contenido.</li>
+      <li>La app se ve más moderna en oscuro, pero hoy menos usable y menos publicable que en blanco.</li>
+      <li>La recomendación QA es <strong>no tomar dark mode como experiencia prioritaria del release inmediato</strong>.</li>
+    </ul>
+
+    <div class="section"><h3 style="margin:0">5.3. Hallazgos visuales en modo blanco</h3></div>
+    <ul>
+      <li>En blanco la app mejora mucho en legibilidad, jerarquía y claridad.</li>
+      <li>Wallet, dashboard, soporte, login y monetización se entienden mejor.</li>
+      <li>Persisten, aun en blanco, problemas de marca, loaders visibles, barra inferior pesada y algunos formularios demasiado suaves.</li>
+      <li><strong>Conclusión visual:</strong> el modo blanco debe ser la referencia visual del parche urgente.</li>
+    </ul>
+
+    <div class="section"><h3 style="margin:0">5.4. Hallazgos de negocio / cumplimiento</h3></div>
+    <ul>
+      <li>G7Cripto queda definida como producto exclusivo para streaming adulto.</li>
+      <li>Debe existir un filtro de entrada: <strong>si es streaming → sigue; si no → FOMENTOR</strong>.</li>
+      <li>El soporte de venta o payout es obligatorio para aprobación y liquidación.</li>
+      <li>El Dashboard debe registrar el ingreso a wallet, aunque todavía no esté aprobado como USD libre para pago.</li>
+      <li>El equipo debe mantener trazabilidad entre wallet, soporte, validación, aprobación, saldo USD y liquidación.</li>
+    </ul>
+  </section>
+
+  <section class="card" style="margin-top:18px">
+    <h2 style="margin-top:0">6. Estado de wallets, pruebas y hallazgos por usuario</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Usuario</th>
+            <th>Wallet / envío de prueba</th>
+            <th>Qué ocurrió</th>
+            <th>Hallazgos QA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Orlando</td>
+            <td class="mono">TG1NJqc7CrQt4iyXqseE1951iMMx93zTg7</td>
+            <td>Recibió fondos; aparecían wallets generadas; luego reportó que no le notificó el ingreso.</td>
+            <td>Botones poco visibles, wallet ya creada sin suficiente contexto, ausencia de notificación, bloqueo por mínimo al liquidar.</td>
+          </tr>
+          <tr>
+            <td>Andrés Holguín</td>
+            <td class="mono">TNBFXbokoYkbdvhfnoPtD4JSY2o5fxtavT</td>
+            <td>Recibió 5 USDT, vio depósito y luego aprobaciones/saldo disponible.</td>
+            <td>No recibió notificación inicial; reportó “quedó en pendiente”; luego mostró saldo disponible $5 USD y bloqueo por mínimo de liquidación.</td>
+          </tr>
+          <tr>
+            <td>Andrea</td>
+            <td class="mono">TNaZVfksbrM749f31JX26BTxbboZyGYrtS</td>
+            <td>Quedó en lista de wallets creadas y como receptora del envío.</td>
+            <td>Levantó duda crítica sobre qué plataforma escoger al monetizar cuando el origen no es obvio.</td>
+          </tr>
+          <tr>
+            <td>Jhonny</td>
+            <td class="mono">TNDUHrELXcXLNhUu3N9UDoiasACcjGfX2G</td>
+            <td>Recibió fondos, vio movimientos, monetización aprobada y saldo disponible en USD.</td>
+            <td>Textos viejos “G7Pay”, ojo de contraseña, logos desactualizados, contrato/empresa vieja, falta de notificación inicial, bloqueo por mínimo de liquidación.</td>
+          </tr>
+          <tr>
+            <td>Carlos</td>
+            <td class="mono">TNmeksedS98xk5Wf2KTnKMurUBCTCe3rVL</td>
+            <td>Compartió wallet, detectó tema visual de logo, reportó problema temporal con datos y luego sí logró liquidar.</td>
+            <td>Hay que revisar por qué su usuario sí pudo saltarse o resolver el bloqueo de liquidación.</td>
+          </tr>
+          <tr>
+            <td>Rosbeny</td>
+            <td class="mono">TNbMqPuVgrnELFWk3ZG5xVsgxWUz4Rf91K</td>
+            <td>Generó wallet, recibió 5 USDT, mostró depósito y movimientos, luego confirmó saldo disponible y notificación por correo y teléfono.</td>
+            <td>Su caso es valioso para comparar por qué en ella sí funcionó la notificación y en otros no.</td>
+          </tr>
+          <tr>
+            <td>Hammer Tapias</td>
+            <td>Sin cierre exitoso en esta prueba</td>
+            <td>No entendió cómo crear wallet y luego reportó que su celular no hacía scroll hasta donde debía crearla.</td>
+            <td>Problema de UX + responsive Android.</td>
+          </tr>
+          <tr>
+            <td>Gladys</td>
+            <td>Pendiente / inconsistente</td>
+            <td>Mostró wallet con KYC APPROVED y al mismo tiempo “KYC en proceso”.</td>
+            <td>Inconsistencia de estados.</td>
+          </tr>
+          <tr>
+            <td>Claudia</td>
+            <td>Pendiente</td>
+            <td>Indicó que su wallet seguía con problemas.</td>
+            <td>Caso pendiente; la operación quedó condicionada a cuando su wallet esté lista.</td>
+          </tr>
+          <tr>
+            <td>Andrés Felipe</td>
+            <td>Cuenta existente</td>
+            <td>No pudo hacer flujo completo inicial.</td>
+            <td>Reportó principalmente problema de contraste y legibilidad.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card" style="margin-top:18px">
+    <h2 style="margin-top:0">7. Registro consolidado de wallets y envíos de 5 USDT</h2>
+    <div class="two-col">
+      <p><strong>Wallets confirmadas:</strong></p>
+      <ul class="mono">
+        <li>Orlando: TG1NJqc7CrQt4iyXqseE1951iMMx93zTg7</li>
+        <li>Andrés Holguín: TNBFXbokoYkbdvhfnoPtD4JSY2o5fxtavT</li>
+        <li>Andrea: TNaZVfksbrM749f31JX26BTxbboZyGYrtS</li>
+        <li>Jhonny: TNDUHrELXcXLNhUu3N9UDoiasACcjGfX2G</li>
+        <li>Carlos: TNmeksedS98xk5Wf2KTnKMurUBCTCe3rVL</li>
+        <li>Rosbeny: TNbMqPuVgrnELFWk3ZG5xVsgxWUz4Rf91K</li>
+      </ul>
+      <p><strong>Uso de esta lista en QA:</strong></p>
+      <ul>
+        <li>Permite validar quiénes recibieron el envío inicial de prueba.</li>
+        <li>Sirve para contrastar depósito en wallet vs notificación vs paso a USD.</li>
+        <li>Permite revisar quién estaba listo para monetización y quién quedó pendiente por wallet o por regla mínima de liquidación.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card" style="margin-top:18px">
+    <h2 style="margin-top:0">8. Reporte visual consolidado</h2>
+    <h3>8.1. Diagnóstico visual en oscuro</h3>
+    <p>La app sí se ve como un producto real, pero en oscuro todavía transmite fase de ajuste. Los principales problemas son contraste deficiente, pérdida de legibilidad, peso excesivo del menú inferior, menú lateral poco refinado y presencia de tonos / logos que no se comportan bien sobre fondos oscuros. El dark mode hoy no debe ser la referencia del release inmediato.</p>
+
+    <h3>8.2. Diagnóstico visual en blanco</h3>
+    <p>En blanco la app gana claramente en legibilidad, limpieza y jerarquía. Wallet, dashboard, soporte y formularios se entienden mejor. Persisten algunos problemas de marca, loaders y composición, pero hoy el modo blanco es mucho más defendible como experiencia pública. La recomendación QA es priorizarlo para la actualización inmediata.</p>
+
+    <h3>8.3. Ajustes visuales críticos</h3>
+    <ul>
+      <li>Versiones de logo aptas para dark mode y mejor visibilidad en tienda.</li>
+      <li>Menú inferior más ligero, con mejor contraste y menos sensación de “estorbo”.</li>
+      <li>Menú lateral más limpio y menos rígido.</li>
+      <li>Mayor visibilidad de íconos en pie de pantalla.</li>
+      <li>App Store / Play Store con ícono más visible y textos totalmente alineados a G7Cripto.</li>
+      <li>Corrección de piezas promocionales con mención a Global66 si ya no deben estar visibles al usuario final.</li>
+    </ul>
+  </section>
+
+  <section class="card" style="margin-top:18px">
+    <h2 style="margin-top:0">9. Ruta de Trabajo Urgente · Solo equipo G7Tech</h2>
+    <p class="muted">Responsables asignados únicamente al equipo G7Tech, como solicitó dirección: <strong>Carlos Cárdenas, Aaron Murillo y David Rodríguez</strong>.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Semáforo</th>
+            <th>Cambio / frente</th>
+            <th>Qué debe corregirse</th>
+            <th>Responsable G7Tech</th>
+            <th>Resultado esperado inmediato</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="priority p-red">Rojo</span></td>
+            <td>Unificación total de marca dentro de la app</td>
+            <td>Eliminar G7Pay/G7BsPay, logos viejos, textos viejos en onboarding, login, validación, mensajes y headers.</td>
+            <td>Carlos Cárdenas</td>
+            <td>Build sin rastro de marca vieja en la app.</td>
+          </tr>
+          <tr>
+            <td><span class="priority p-red">Rojo</span></td>
+            <td>Recuperación de contraseña y acceso</td>
+            <td>Mostrar/ocultar contraseña, corregir visualización del input, revisar validación del código y flujo de usuarios ya registrados.</td>
+            <td>Carlos Cárdenas + David Rodríguez (QA)</td>
+            <td>Usuario puede recuperar acceso sin quedarse bloqueado.</td>
+          </tr>
+          <tr>
+            <td><span class="priority p-red">Rojo</span></td>
+            <td>Wallet: claridad del flujo</td>
+            <td>Hacer más claro el CTA de generar wallet, revisar estados KYC/wallet, corregir scroll Android, dejar feedback visual de wallet activa.</td>
+            <td>Carlos Cárdenas + David Rodríguez (QA)</td>
+            <td>Usuario nuevo entiende cómo crear wallet y completar el paso.</td>
+          </tr>
+          <tr>
+            <td><span class="priority p-red">Rojo</span></td>
+            <td>Soporte obligatorio dentro del flujo</td>
+            <td>Mostrar de forma visible que el soporte de venta/payout es obligatorio; confirmar carga correcta; mostrar estados cargado/pendiente/rechazado.</td>
+            <td>Carlos Cárdenas + David Rodríguez (QA)</td>
+            <td>El usuario entiende que sin soporte no se aprueba ni liquida.</td>
+          </tr>
+          <tr>
+            <td><span class="priority p-red">Rojo</span></td>
+            <td>Regla mínima de liquidación</td>
+            <td>Quitar o parametrizar el mínimo de 20 USD para la prueba y el parche urgente.</td>
+            <td>Carlos Cárdenas + David Rodríguez (QA)</td>
+            <td>Se puede cerrar la fase 2 con montos reales de prueba.</td>
+          </tr>
+          <tr>
+            <td><span class="priority p-red">Rojo</span></td>
+            <td>Filtro inicial del negocio</td>
+            <td>Activar / recuperar la pregunta “¿es vendedor/a vía streaming?”; si NO, redirigir a FOMENTOR.</td>
+            <td>Aaron Murillo + David Rodríguez (QA)</td>
+            <td>La app guía al usuario correcto por el flujo correcto.</td>
+          </tr>
+          <tr>
+            <td><span class="priority p-red">Rojo</span></td>
+            <td>Modo blanco como experiencia prioritaria</td>
+            <td>Dejar el release inmediato visualmente sólido en blanco, aun si dark mode queda como mejora inmediata posterior.</td>
+            <td>Carlos Cárdenas + David Rodríguez (QA)</td>
+            <td>La actualización de mañana no sale afectada por dark mode.</td>
+          </tr>
+
+          <tr>
+            <td><span class="priority p-orange">Naranja</span></td>
+            <td>App Store / Play Store</td>
+            <td>Limpiar nombre, subtítulo, descripción, screenshots, ícono, referencias viejas y visibilidad del logo.</td>
+            <td>Aaron Murillo + David Rodríguez (QA)</td>
+            <td>Ficha pública coherente y lista para publicación.</td>
+          </tr>
+          <tr>
+            <td><span class="priority p-orange">Naranja</span></td>
+            <td>Notificaciones</td>
+            <td>Unificar comportamiento de notificación por depósito, validación de soporte, aprobación y paso a liquidación.</td>
+            <td>Carlos Cárdenas + David Rodríguez (QA)</td>
+            <td>Todos los casos críticos reciben notificación consistente.</td>
+          </tr>
+          <tr>
+            <td><span class="priority p-orange">Naranja</span></td>
+            <td>Dashboard y estados operativos</td>
+            <td>Reflejar claramente wallet con fondos, estado del soporte, aprobación y paso a USD/listo para liquidar.</td>
+            <td>Carlos Cárdenas + David Rodríguez (QA)</td>
+            <td>El backoffice refleja el flujo real del nuevo esquema wallet-first.</td>
+          </tr>
+          <tr>
+            <td><span class="priority p-orange">Naranja</span></td>
+            <td>Selector de plataforma en monetización</td>
+            <td>Definir regla única y explicársela al usuario dentro del formulario.</td>
+            <td>Carlos Cárdenas + David Rodríguez (QA)</td>
+            <td>Se elimina la duda operativa en monetización.</td>
+          </tr>
+          <tr>
+            <td><span class="priority p-orange">Naranja</span></td>
+            <td>Menú inferior y menú lateral</td>
+            <td>Reducir peso visual, mejorar visibilidad de íconos y lograr que no estorben.</td>
+            <td>Carlos Cárdenas + David Rodríguez (QA)</td>
+            <td>Navegación más limpia y menos invasiva.</td>
+          </tr>
+
+          <tr>
+            <td><span class="priority p-yellow">Amarillo</span></td>
+            <td>Formularios y microcopy</td>
+            <td>Mejorar contraste de inputs, placeholders y mensajes; revisar etiqueta del número telefónico y ayudas contextuales.</td>
+            <td>Aaron Murillo + David Rodríguez (QA)</td>
+            <td>Formularios más claros y menos ambiguos.</td>
+          </tr>
+          <tr>
+            <td><span class="priority p-yellow">Amarillo</span></td>
+            <td>Perfil / edición de datos / cuentas bancarias</td>
+            <td>Revisar fallos de actualización, duplicidades y mensajes de error.</td>
+            <td>Carlos Cárdenas + David Rodríguez (QA)</td>
+            <td>Menos fricción operativa en datos del usuario.</td>
+          </tr>
+          <tr>
+            <td><span class="priority p-yellow">Amarillo</span></td>
+            <td>QA de regresión integral</td>
+            <td>Probar Android blanco, Android oscuro, iPhone blanco, wallet, soporte, notificaciones, monetización y liquidación.</td>
+            <td>David Rodríguez</td>
+            <td>Release validado antes de subir a tiendas.</td>
+          </tr>
+
+          <tr>
+            <td><span class="priority p-green">Verde</span></td>
+            <td>Loaders, transiciones y refinamiento continuo</td>
+            <td>Optimizar tiempos de espera visibles, loaders, microinteracciones y estados de éxito.</td>
+            <td>Carlos Cárdenas + David Rodríguez (QA)</td>
+            <td>Mejor percepción de calidad en siguientes releases.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:18px">
+    <div class="card span-8">
+      <h2 style="margin-top:0">10. Plan operativo inmediato para hoy y mañana</h2>
+      <ul class="timeline">
+        <li><strong>Hoy – bloqueo de alcance:</strong> concentrar el desarrollo solo en marca, acceso, wallet, soporte, notificaciones, regla mínima de liquidación y priorización de modo blanco.</li>
+        <li><strong>Hoy – preparación de publicación:</strong> Aaron limpia tienda, descripciones, ícono, screenshots y referencias viejas.</li>
+        <li><strong>Hoy – pruebas técnicas:</strong> David arma checklist de regresión y prueba Android/iPhone con foco en wallet, soporte, notificaciones y liquidación.</li>
+        <li><strong>Mañana temprano – build candidata:</strong> Carlos entrega release candidate con ajustes críticos.</li>
+        <li><strong>Mañana temprano – regresión final:</strong> David valida build en escenarios mínimos críticos.</li>
+        <li><strong>Mañana – publicación:</strong> Aaron deja listas metadata y piezas públicas ya corregidas.</li>
+      </ul>
+    </div>
+    <div class="card span-4">
+      <h2 style="margin-top:0">11. Ideas para mejorar la experiencia del usuario</h2>
+      <ul>
+        <li>Checklist visible dentro de la app: crear wallet → copiar dirección → registrar en plataforma → esperar pago → subir soporte → monetizar → liquidar.</li>
+        <li>Estados visibles y simples: “Pago recibido”, “Soporte cargado”, “Soporte aprobado”, “Listo para liquidar”.</li>
+        <li>Ayuda contextual corta para USDT, USDC, BTC y para el selector de plataforma.</li>
+        <li>Confirmaciones fuertes después de cada paso importante.</li>
+        <li>Diferenciar mejor: saldo en wallet / pendiente por validar / saldo USD disponible / pendiente de liquidar.</li>
+        <li>Reducir peso visual del menú inferior.</li>
+        <li>Usar modo blanco como referencia principal hasta terminar dark mode.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card" style="margin-top:18px">
+    <h2 style="margin-top:0">12. Conclusión final</h2>
+    <p>La ruta estratégica de marzo ya definía correctamente hacia dónde debía moverse G7Cripto: marca nueva, perfilamiento, wallet propia por cliente, visualización de saldos, continuidad del flujo actual de monetización y actualización del Dashboard. Este QA demuestra que buena parte de esa transformación ya existe en funcionamiento, pero la experiencia real todavía deja una brecha importante entre la promesa y lo que el usuario logra entender y cerrar sin ayuda.</p>
+    <p>La urgencia no es rediseñar todo. La urgencia es <strong>cerrar la distancia entre la operación correcta y la experiencia real del usuario</strong>. Si el equipo G7Tech ejecuta de inmediato el bloque rojo y naranja, mañana sí puede salir una actualización más sólida, más clara y más confiable.</p>
+    <div class="danger callout">
+      <strong>Mensaje final para G7Tech:</strong> el equipo debe iniciar hoy mismo. El release inmediato debe corregir lo que rompe confianza, bloquea el flujo o afecta cumplimiento. Todo lo demás puede ir a sprint corto, pero no debe retrasar este parche.
+    </div>
+  </section>
+
+  <div class="foot">
+    Reporte QA + Ruta de Trabajo Urgente · G7Cripto · Preparado para ejecución inmediata del equipo G7Tech
+  </div>
+</div>
+</body>
+</html>
