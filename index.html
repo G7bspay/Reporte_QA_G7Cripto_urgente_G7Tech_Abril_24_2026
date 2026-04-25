@@ -3,521 +3,1040 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reporte QA G7Cripto + Ruta de Trabajo Urgente - Actualizado 25 Abril 2026</title>
+<title>Reporte QA G7Cripto — v9 · 25 Abril 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#f6f8fb; --card:#ffffff; --ink:#16202a; --muted:#5b6b7c; --line:#dbe4ee;
-    --blue:#153e90; --blue2:#0f62fe; --red:#d92d20; --amber:#c77d00; --green:#127c42;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);line-height:1.45}
-  .wrap{max-width:1100px;margin:0 auto;padding:24px}
-  .hero{background:linear-gradient(135deg,#0d2f6d,#184fb7);color:#fff;padding:28px;border-radius:18px}
-  .hero h1{margin:0 0 8px;font-size:32px}
-  .hero p{margin:6px 0 0;color:#e8eef8}
-  .note{background:#eef5ff;border-left:5px solid var(--blue2);padding:14px 16px;border-radius:8px;margin-top:16px}
-  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:18px}
-  .card{grid-column:span 12;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
-  .half{grid-column:span 6}
-  .third{grid-column:span 4}
-  h2{margin:0 0 12px;font-size:24px;color:var(--blue)}
-  h3{margin:18px 0 8px;font-size:18px}
-  h4{margin:14px 0 6px;font-size:16px}
-  ul{margin:8px 0 8px 20px}
-  li{margin:5px 0}
-  .badge{display:inline-block;padding:6px 10px;border-radius:999px;font-weight:bold;font-size:12px;margin-right:8px}
-  .red{background:#fdecec;color:var(--red)}
-  .amber{background:#fff4dd;color:var(--amber)}
-  .green{background:#e8f6ee;color:var(--green)}
-  .blue{background:#eaf2ff;color:var(--blue)}
-  table{width:100%;border-collapse:collapse;margin-top:10px}
-  th,td{border:1px solid var(--line);padding:10px 10px;vertical-align:top;font-size:14px}
-  th{background:#f0f5fb;text-align:left}
-  .small{font-size:13px;color:var(--muted)}
-  .pill{display:inline-block;border:1px solid var(--line);padding:2px 8px;border-radius:999px;font-size:12px;color:var(--muted);margin:2px 4px 2px 0}
-  .section{margin-top:18px}
-  .kpi{font-size:28px;font-weight:bold;color:var(--blue)}
-  .footer{margin:26px 0 10px;color:var(--muted);font-size:13px}
-  @media (max-width:900px){.half,.third{grid-column:span 12}.hero h1{font-size:26px}}
+/* ─── TOKENS ─────────────────────────────────────────────── */
+:root{
+  --bg:#F3F4F7;
+  --surface:#FFFFFF;
+  --surface2:#F8F9FB;
+  --ink:#131C26;
+  --ink2:#3E4C5E;
+  --ink3:#7B8DA0;
+  --line:#DDE3EC;
+
+  --blue-d:#0D2F6D;
+  --blue:#1A4FA0;
+  --blue-m:#2563EB;
+  --blue-l:#EEF4FF;
+
+  --red:#C0392B;
+  --red-l:#FDECEC;
+  --red-b:#E57373;
+
+  --amber:#B45309;
+  --amber-l:#FEF3C7;
+  --amber-b:#F59E0B;
+
+  --green:#15653A;
+  --green-l:#ECFDF5;
+  --green-b:#34D399;
+
+  --yellow-t:#92400E;
+
+  --r:12px;
+  --r-sm:8px;
+  --shadow:0 1px 4px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.04);
+}
+
+/* ─── RESET ──────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--blue-m);text-decoration:none}
+
+/* ─── LAYOUT ─────────────────────────────────────────────── */
+.wrap{max-width:1060px;margin:0 auto;padding:32px 20px 72px}
+
+/* ─── MASTHEAD ───────────────────────────────────────────── */
+.masthead{
+  background:linear-gradient(135deg,#0A2355 0%,#1A4FA0 60%,#1E6FD4 100%);
+  border-radius:18px;
+  padding:44px 44px 40px;
+  color:#fff;
+  position:relative;
+  overflow:hidden;
+  margin-bottom:28px;
+}
+.masthead::before{
+  content:'';position:absolute;top:-80px;right:-80px;
+  width:340px;height:340px;border-radius:50%;
+  border:72px solid rgba(255,255,255,.06);pointer-events:none;
+}
+.masthead::after{
+  content:'';position:absolute;bottom:-100px;left:38%;
+  width:260px;height:260px;border-radius:50%;
+  border:50px solid rgba(255,255,255,.04);pointer-events:none;
+}
+.mast-tag{
+  display:inline-block;
+  font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.28);
+  padding:4px 12px;border-radius:4px;margin-bottom:18px;
+}
+.masthead h1{
+  font-family:'DM Serif Display',serif;font-weight:400;
+  font-size:clamp(26px,4vw,40px);line-height:1.15;margin-bottom:10px;
+}
+.mast-meta{
+  display:flex;flex-wrap:wrap;gap:20px;
+  font-size:13.5px;color:rgba(255,255,255,.72);margin-top:6px;
+}
+.mast-meta span{display:flex;align-items:center;gap:6px}
+.mast-note{
+  background:rgba(255,255,255,.11);backdrop-filter:blur(4px);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:var(--r-sm);padding:14px 18px;margin-top:22px;
+  font-size:13.5px;color:rgba(255,255,255,.88);line-height:1.55;
+  position:relative;z-index:1;
+}
+.mast-note strong{color:#fff}
+
+/* ─── KPI STRIP ──────────────────────────────────────────── */
+.kpi-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
+.kpi-card{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r);padding:18px 20px;
+  box-shadow:var(--shadow);
+}
+.kpi-label{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink3);font-weight:600;margin-bottom:6px}
+.kpi-val{font-size:26px;font-weight:700;color:var(--blue);font-family:'DM Mono',monospace;line-height:1}
+.kpi-sub{font-size:12px;color:var(--ink3);margin-top:4px}
+
+/* ─── SECTION HEADER ─────────────────────────────────────── */
+.sec-lbl{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink3);margin-bottom:6px}
+.sec-title{font-family:'DM Serif Display',serif;font-size:24px;font-weight:400;color:var(--blue-d);margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid var(--line)}
+.sec-title span{font-size:14px;font-family:'DM Sans',sans-serif;font-weight:500;color:var(--ink3);margin-left:10px;vertical-align:middle}
+
+/* ─── CARD ───────────────────────────────────────────────── */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:28px 30px;box-shadow:var(--shadow);margin-bottom:20px}
+.card-sm{padding:18px 22px}
+
+/* ─── GRID ───────────────────────────────────────────────── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+
+/* ─── BADGE ──────────────────────────────────────────────── */
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;padding:4px 11px;border-radius:999px;letter-spacing:.3px}
+.b-red{background:var(--red-l);color:var(--red)}
+.b-amber{background:var(--amber-l);color:var(--amber)}
+.b-green{background:var(--green-l);color:var(--green)}
+.b-blue{background:var(--blue-l);color:var(--blue)}
+
+/* ─── STATUS PILL ────────────────────────────────────────── */
+.pill{display:inline-block;border:1px solid var(--line);padding:2px 9px;border-radius:999px;font-size:12px;color:var(--ink2);margin:2px 3px 2px 0;background:var(--surface2)}
+
+/* ─── FLUJO DE PASOS ─────────────────────────────────────── */
+.steps{display:flex;flex-direction:column;gap:2px}
+.step{display:flex;align-items:flex-start;gap:14px;padding:11px 14px;border-radius:8px;transition:background .15s}
+.step:hover{background:var(--blue-l)}
+.step-n{min-width:28px;height:28px;background:var(--blue);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:12px;font-weight:600;flex-shrink:0;margin-top:1px}
+.step-t{font-size:14px;color:var(--ink2);line-height:1.5}
+.step-t strong{color:var(--ink)}
+
+/* ─── AVANCE TABLE ───────────────────────────────────────── */
+.avance-table{width:100%;border-collapse:collapse}
+.avance-table th{background:var(--blue-d);color:#fff;font-size:12.5px;font-weight:500;text-align:left;padding:11px 16px}
+.avance-table th:first-child{border-radius:8px 0 0 0}
+.avance-table th:last-child{border-radius:0 8px 0 0}
+.avance-table td{padding:12px 16px;border-bottom:1px solid var(--line);font-size:13.5px;vertical-align:top}
+.avance-table tr:last-child td{border-bottom:none}
+.avance-table tr:nth-child(even) td{background:#FAFBFD}
+
+/* ─── HALLAZGOS ──────────────────────────────────────────── */
+.hall-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.hall{border-left:4px solid;padding:14px 16px;border-radius:0 8px 8px 0;background:var(--surface);border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.hall.h-red{border-left-color:var(--red)}
+.hall.h-amber{border-left-color:var(--amber-b)}
+.hall.h-blue{border-left-color:var(--blue-m)}
+.hall-cod{font-family:'DM Mono',monospace;font-size:10.5px;font-weight:500;margin-bottom:4px}
+.hall.h-red .hall-cod{color:var(--red)}
+.hall.h-amber .hall-cod{color:var(--amber)}
+.hall.h-blue .hall-cod{color:var(--blue-m)}
+.hall-title{font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.hall-desc{font-size:12.5px;color:var(--ink3);line-height:1.55}
+
+/* ─── USUARIOS TABLE ─────────────────────────────────────── */
+.usr-table{width:100%;border-collapse:collapse}
+.usr-table th{background:var(--blue-d);color:#fff;font-size:12px;font-weight:500;padding:10px 13px;text-align:left}
+.usr-table th:first-child{border-radius:8px 0 0 0}
+.usr-table th:last-child{border-radius:0 8px 0 0}
+.usr-table td{padding:11px 13px;border-bottom:1px solid var(--line);font-size:13px;vertical-align:top;color:var(--ink2)}
+.usr-table tr:last-child td{border-bottom:none}
+.usr-table tr:hover td{background:#F5F8FF}
+.usr-name{font-weight:600;color:var(--ink);font-size:13.5px}
+.usr-note{font-size:11.5px;color:var(--ink3);margin-top:3px;line-height:1.45}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;flex-shrink:0}
+.dot-green{background:var(--green-b)}
+.dot-amber{background:var(--amber-b)}
+.dot-red{background:var(--red-b)}
+.dot-gray{background:#CBD5E1}
+
+/* ─── SEMÁFORO ───────────────────────────────────────────── */
+.sem-block{margin-bottom:24px;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow)}
+.sem-head{display:flex;align-items:center;gap:12px;padding:14px 20px}
+.sem-head.rojo{background:var(--red)}
+.sem-head.naranja{background:#C2770A}
+.sem-head.verde{background:#15803D}
+.sem-head h3{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;color:#fff;margin:0}
+.sem-head .sem-desc{font-size:12px;color:rgba(255,255,255,.72);margin-left:auto;font-style:italic}
+.sem-rows{}
+.sem-row{display:grid;grid-template-columns:40px 1fr 200px;align-items:stretch;border-bottom:1px solid var(--line)}
+.sem-row:last-child{border-bottom:none}
+.sem-num{display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:13px;font-weight:600;color:#fff;padding:0}
+.sem-num.rojo{background:#E74C3C}
+.sem-num.naranja{background:#E59866}
+.sem-num.verde{background:#2ECC71}
+.sem-body{padding:14px 18px}
+.sem-body strong{font-size:14px;font-weight:600;color:var(--ink);display:block;margin-bottom:6px}
+.sem-ul{list-style:none}
+.sem-ul li{font-size:13px;color:var(--ink2);padding:2px 0 2px 16px;position:relative;line-height:1.5}
+.sem-ul li::before{content:'—';position:absolute;left:0;color:var(--ink3);font-size:11px;top:4px}
+.sem-resp{padding:14px 16px;border-left:1px solid var(--line);background:var(--surface2);display:flex;flex-direction:column;justify-content:center;gap:5px}
+.resp-lbl{font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--ink3);font-weight:600}
+.resp-name{font-size:13px;font-weight:600;color:var(--blue)}
+.resp-qa{font-size:11.5px;color:var(--ink3);margin-top:1px}
+
+/* ─── INFO BOX ───────────────────────────────────────────── */
+.infobox{background:var(--blue-l);border:1px solid #BFD4F7;border-radius:var(--r-sm);padding:14px 18px;margin:14px 0;font-size:13.5px;color:var(--blue-d);line-height:1.55}
+.warnbox{background:var(--amber-l);border:1px solid #FCD34D;border-radius:var(--r-sm);padding:14px 18px;margin:14px 0;font-size:13.5px;color:var(--yellow-t);line-height:1.55}
+.successbox{background:var(--green-l);border:1px solid #A7F3D0;border-radius:var(--r-sm);padding:14px 18px;margin:14px 0;font-size:13.5px;color:var(--green);line-height:1.55}
+
+/* ─── IDEAS ──────────────────────────────────────────────── */
+.ideas-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.idea{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;box-shadow:var(--shadow)}
+.idea-letter{font-family:'DM Serif Display',serif;font-size:34px;color:var(--blue-l);line-height:1;margin-bottom:8px}
+.idea-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.idea-body{font-size:13px;color:var(--ink3);line-height:1.6}
+
+/* ─── CIERRE ─────────────────────────────────────────────── */
+.cierre{background:linear-gradient(135deg,#0A2355,#1A4FA0);border-radius:var(--r);padding:36px 40px;color:#fff;margin-top:8px}
+.cierre h2{font-family:'DM Serif Display',serif;font-size:26px;font-weight:400;margin-bottom:12px}
+.cierre p{color:rgba(255,255,255,.78);font-size:14px;line-height:1.65;margin-bottom:14px}
+.cierre p:last-of-type{margin-bottom:20px}
+.release-list{display:flex;flex-direction:column;gap:8px}
+.release-item{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.1);border-radius:8px;padding:11px 16px;font-size:14px;color:rgba(255,255,255,.92)}
+.release-dot{width:7px;height:7px;background:#7DD3FC;border-radius:50%;flex-shrink:0}
+
+/* ─── FOOTER ─────────────────────────────────────────────── */
+.footer{text-align:center;padding:28px 20px 0;color:var(--ink3);font-size:12.5px;border-top:1px solid var(--line);margin-top:40px;line-height:1.7}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────── */
+@media(max-width:820px){
+  .g2,.g3,.hall-grid,.ideas-grid{grid-template-columns:1fr}
+  .kpi-strip{grid-template-columns:1fr 1fr}
+  .sem-row{grid-template-columns:36px 1fr}
+  .sem-resp{display:none}
+  .masthead{padding:30px 22px 26px}
+  .cierre{padding:26px 22px}
+  .card{padding:20px 18px}
+}
+@media(max-width:500px){
+  .kpi-strip{grid-template-columns:1fr}
+  .usr-table{display:block;overflow-x:auto}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="hero">
-    <h1>Reporte QA G7Cripto + Ruta de Trabajo Urgente</h1>
-    <p><strong>Actualizado al 25 de abril de 2026</strong></p>
-    <p>Documento consolidado para inicio inmediato de ajustes por parte de G7Tech.</p>
-    <div class="note">
-      <strong>Criterio rector actualizado del producto:</strong> G7Cripto está enfocada exclusivamente al gremio de streaming adulto. El flujo correcto exige wallet propia, recepción del pago, notificación, reflejo en Dashboard, carga de soporte de venta/payout, validación interna, aprobación del valor en USD, monetización, liquidación, tesorería, finanzas y conciliación final.
-    </div>
-    <div class="note" style="margin-top:12px;background:#eef8f1;border-left-color:#127c42;">
-      <strong>Responsable del QA:</strong> Guillermo L. Valencia<br>
-      <strong>Rol:</strong> Lidera la revisión, recolección de hallazgos, validación del flujo y consolidación del diagnóstico final de G7Cripto.
-    </div>
 
+<!-- ═══════════════ MASTHEAD ═══════════════ -->
+<div class="masthead">
+  <div class="mast-tag">QA Interno · Equipo G7BS · Confidencial</div>
+  <h1>Reporte QA G7Cripto<br>+ Ruta de Trabajo Urgente</h1>
+  <div class="mast-meta">
+    <span>📅 Actualizado 25 de abril de 2026</span>
+    <span>📱 Gremio streaming adulto</span>
+    <span>⚙️ G7Tech: Carlos Cárdenas · Aaron Murillo · David Rodríguez</span>
   </div>
-
-  <div class="grid">
-    <div class="card half">
-      <h2>1. Resumen ejecutivo</h2>
-      <p><strong>Responsable del QA:</strong> Guillermo L. Valencia.</p>
-      <p><strong>Actualización Bitrix P02:</strong> Carlos Cárdenas debe proceder con el cambio de propietario a <strong>G7Fintech SAS</strong> en App Store y Google Play. Para este paso específico, los registros de marca no son el requisito central; lo urgente es asegurar la transferencia de titularidad y continuidad de las cuentas de publicación.</p>
-      <p><strong>Actualización Bitrix de cierre:</strong> las tareas <strong>P01, P03, P04, P05, P06, P07, P08, P09 y P12</strong> ya fueron cerradas/completadas en Bitrix; <strong>P02</strong> sigue encaminada al cambio de propietario bajo G7Fintech SAS; <strong>P10</strong> queda pendiente de análisis urgente para dashboard; y <strong>P11</strong> sigue pendiente de perfeccionamiento. Aun así, por criterio de QA, los frentes cerrados en Bitrix deben <strong>seguirse refinando dentro de la Ruta de Trabajo Urgente</strong> cuando todavía existan pendientes visibles en la app, tiendas o experiencia real del usuario.</p>
-
-
-      <p>El QA confirma que G7Cripto <strong>ya tiene una base funcional real</strong>: genera wallets automáticas, permite USDT/USDC/BTC, muestra QR y copy/paste de direcciones, registra depósitos, refleja movimientos y en varios casos llegó a monetización aprobada y liquidación. Sin embargo, el producto <strong>todavía no está listo para relanzarse sin un parche urgente</strong>, porque persisten fallas de marca, dark mode, recuperación de contraseña, claridad del flujo wallet/soporte, notificaciones inconsistentes y bloqueo por monto mínimo de liquidación.</p>
-      <p>La recomendación operativa es <strong>iniciar cambios hoy mismo</strong> y usar <strong>modo blanco como experiencia visual prioritaria</strong>, mientras dark mode termina de estabilizarse.</p>
-      <p><strong>Actualización adicional del QA:</strong> la sección de <em>Enviar mensaje</em> dentro de soporte se considera correcta, pero las <em>Respuestas rápidas</em> quedan observadas por contenido pobre y deben revisarse antes de darse por aprobadas. También se corrige como hallazgo transversal el footer “Power by G7 / Power by G7Tech”, que debe sustituirse por una versión más profesional y consistente.</p>
-
-    </div>
-
-    <div class="card half">
-      <h2>2. Qué sí se cumplió vs Ruta Marzo 24</h2>
-      <p><span class="badge green">Avance alto</span> P7 flujo de wallet, P8 wallets por cliente / visualización, P9 monetización manteniendo flujo actual, P10 Dashboard con participación real en operación.</p>
-      <p><span class="badge amber">Cumplido parcial</span> P3 tiendas y assets, P4 landing/pages públicas, P5 perfilamiento inicial.</p>
-      <p><span class="badge red">Crítico pendiente</span> P1 unificación total de marca, P2 transferencia societaria visible/consistente, P6 firma/flujo contractual fluido, P12 textos y contratos legales actualizados en todas las superficies.</p>
-      <div class="small">Referencia estratégica base: Bitrix_103334 · Ruta de Trabajo G7Cripto v4 · 24 marzo 2026.</div>
-    </div>
-
-    <div class="card">
-      <h2>3. Flujo oficial correcto a tomar como base</h2>
-      <ol>
-        <li>El cliente genera su wallet desde la app.</li>
-        <li>Registra esa wallet en su plataforma de streaming.</li>
-        <li>La plataforma realiza el pago.</li>
-        <li>Al cliente le llega notificación informando que recibió fondos.</li>
-        <li>El Dashboard también refleja que esa wallet recibió fondos.</li>
-        <li>El cliente entra a la app y sube el soporte de venta o payout de la plataforma.</li>
-        <li>El equipo interno valida el soporte.</li>
-        <li>Solo después de esa validación el valor se aprueba para verse como saldo en USD.</li>
-        <li>El cliente solicita la liquidación.</li>
-        <li>Tesorería procesa.</li>
-        <li>Finanzas concilia.</li>
-        <li>Se cierra la operación.</li>
-      </ol>
-      <p><strong>Aclaración clave:</strong> el saldo <em>no</em> debe quedar libre en USD solo por recibir fondos en la wallet. Antes debe existir soporte y aprobación. Esto se mantiene por cumplimiento legal y por la lógica operativa declarada ante aliados de pago.</p>
-    </div>
-
-    <div class="card">
-      <h2>4. Hallazgos QA consolidados</h2>
-
-      <h3>4.1 Hallazgos críticos funcionales</h3>
-      <ul>
-        <li><strong>Marca todavía inconsistente:</strong> siguen apareciendo G7Pay, G7BsPay, G7 BSP y logos antiguos en onboarding, validación, tienda y textos visibles.</li>
-        <li><strong>Dark mode afecta la usabilidad:</strong> bajo contraste, logo poco visible, tonos no marca, botones e íconos que se pierden.</li>
-        <li><strong>Recuperación de contraseña inestable:</strong> códigos que llegan pero fallan al validar, entradas poco visibles, falta de “mostrar contraseña”.</li>
-        <li><strong>Creación de wallet confusa:</strong> CTA poco evidente, estados ambiguos, scroll roto en algunos Android, usuarios que no entendían si ya estaba creada o no.</li>
-        <li><strong>Regla mínima de liquidación:</strong> el mínimo de 20 USD bloqueó pruebas reales de 4 y 5 USD.</li>
-        <li><strong>Soporte obligatorio poco claro:</strong> si no se sube, la operación se rechaza, pero la app no lo explica ni confirma con suficiente claridad.</li>
-        <li><strong>Selector de plataforma en monetización confuso:</strong> no queda claro qué plataforma escoger en algunos escenarios.</li>
-        <li><strong>Notificaciones inconsistentes:</strong> en unos casos sí llegan por correo/teléfono y en otros no llegan o llegan plantillas viejas.</li>
-      </ul>
-
-      <h3>4.2 Hallazgos visuales</h3>
-      <ul>
-        <li><strong>Modo blanco</strong> se ve claramente mejor que dark mode: más legible, limpio y presentable.</li>
-        <li>La <strong>barra inferior</strong> se siente pesada y a veces parece estorbar o invadir el contenido.</li>
-        <li>El <strong>menú lateral</strong> mejora en blanco, pero aún se ve rígido y poco refinado.</li>
-        <li>El módulo <strong>Wallet</strong> es de los mejores visualmente, pero todavía necesita pulido de estados y espaciados.</li>
-        <li><strong>Monetización</strong> sigue cargada de texto y campos; <strong>Liquidación</strong> se ve más clara, pero aún requiere más guía visual.</li>
-        <li>En tienda, el <strong>ícono/logo</strong> se percibe pequeño y con poca presencia.</li>
-      </ul>
-
-      <h3>4.3 Hallazgos operativos</h3>
-      <ul>
-        <li>El soporte de venta/payout sí es obligatorio para aprobación y liquidación.</li>
-        <li>El Dashboard sí está leyendo parte de la operación, pero debe reflejar con mayor claridad fondos recibidos, soporte, aprobación y estado de monetización/liquidación.</li>
-        <li>Hay automatizaciones y plantillas antiguas aún activas o visibles.</li>
-        <li>Los contratos ya fueron revisados por Jhonny Villegas, pero aún hay que asegurar que los cambios estén reflejados en app, textos visibles y flujos de aceptación.</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h2>5. Estado de la prueba por usuarios</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Usuario</th>
-            <th>Wallet / Recepción</th>
-            <th>Monetización</th>
-            <th>Liquidación</th>
-            <th>Mensajes / Notificaciones</th>
-            <th>Notas QA</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Rosbeny Salas</td>
-            <td>Recibió 5 USDT</td>
-            <td>Aprobada / disponible</td>
-            <td>Intentó liquidar; bloqueada por mínimo al inicio</td>
-            <td>Reportó correo y teléfono OK en un momento; antes reportó falta de notificación de ingreso</td>
-            <td>Sirve como caso de inconsistencias de notificación y bloqueo por monto mínimo.</td>
-          </tr>
-          <tr>
-            <td>Jhonny Villegas</td>
-            <td>Recibió 5 USDT</td>
-            <td>Aprobada</td>
-            <td>Disponible para liquidar; también afectado por mínimo</td>
-            <td>Recibió mensaje de aprobación para liquidar; antes no le había llegado notificación de depósito</td>
-            <td>También reportó cambio necesario en nombre del número de teléfono.</td>
-          </tr>
-          <tr>
-            <td>Gladys Vilchez Montero</td>
-            <td>Recibió fondos según lista de pagos</td>
-            <td>Aparece como parte de pagos realizados</td>
-            <td>No hay cierre completo documentado aquí</td>
-            <td>Subió plantillas/mensajes que parecían venir de automatización vieja</td>
-            <td>Había tenido inconsistencia de KYC/wallet previamente.</td>
-          </tr>
-          <tr>
-            <td>Luisa Vallejo</td>
-            <td>Figura en lista de pagos realizados</td>
-            <td>Operó como coordinadora del flujo</td>
-            <td>Indicó cuándo liquidar</td>
-            <td>No aplica como caso principal de prueba de usuario final</td>
-            <td>Validó soportes, Dashboard y regla operativa del flujo.</td>
-          </tr>
-          <tr>
-            <td>Johanna Marcela Zapata Restrepo</td>
-            <td>Figura en lista de pagos realizados</td>
-            <td>Sin detalle adicional aquí</td>
-            <td>Sin detalle adicional aquí</td>
-            <td>Sin detalle adicional aquí</td>
-            <td>Marcar para confirmación de cierre completo en próxima ronda.</td>
-          </tr>
-          <tr>
-            <td>Andrés Holguín Preciado</td>
-            <td>Recibió 5 USDT</td>
-            <td>Aprobada; saldo disponible en USD</td>
-            <td>Bloqueado por mínimo al intentar liquidar</td>
-            <td>No le llegó notificación de depósito; sí compartió aprobación para liquidar</td>
-            <td>Reportó también estado “pendiente” en un momento.</td>
-          </tr>
-          <tr>
-            <td>Orlando Pacheco</td>
-            <td>Recibió 5 USDT</td>
-            <td>Avanzó a monetización</td>
-            <td>Bloqueado por mínimo</td>
-            <td>Reportó que no le notificó el ingreso en wallet</td>
-            <td>También reportó botones poco visibles y wallet ya generada desde antes.</td>
-          </tr>
-          <tr>
-            <td>Hammer Tapias</td>
-            <td>En etapas previas tuvo problemas de scroll y creación de wallet</td>
-            <td>En actualización posterior reporta haber recibido y liquidado</td>
-            <td>Muestra mensaje de liquidación / pago enviado</td>
-            <td>Aparecen mensajes automáticos relacionados con pago enviado</td>
-            <td>Relevante para tutoriales y experiencia Android.</td>
-          </tr>
-          <tr>
-            <td>Andrea Higuita Cardona</td>
-            <td>Figura en lista de pagos realizados</td>
-            <td>Planteó duda operativa sobre qué plataforma escoger</td>
-            <td>Sin cierre completo aquí</td>
-            <td>Sin detalle adicional aquí</td>
-            <td>Su duda detonó revisión del selector de plataforma.</td>
-          </tr>
-          <tr>
-            <td>Claudia Atehortua</td>
-            <td>Al final del día ya tenía wallet creada y primer envío evidenciado</td>
-            <td>Aún en seguimiento</td>
-            <td>Aún en seguimiento</td>
-            <td>Sin detalle final consolidado</td>
-            <td>Había reportado problemas previos de wallet y carga de soportes.</td>
-          </tr>
-          <tr>
-            <td>Carlos Cárdenas</td>
-            <td>Usuario de validación interna</td>
-            <td>Ejecutó monetización/liquidación de prueba</td>
-            <td>Mostró liquidación pendiente por -5 USD</td>
-            <td>No aplica como usuario final; sí sirve para contrastar permisos/reglas</td>
-            <td>Su caso mostró diferencia frente al bloqueo mínimo de otros usuarios.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="card">
-      <h2>6. Información adicional archivada del 24 de abril</h2>
-      <ul>
-        <li>Se compartió el reporte QA + ruta urgente con el equipo para iniciar cambios de inmediato.</li>
-        <li>Carlos indicó intención de trabajar cambios en fin de semana para publicar el domingo y tener versión activa el lunes.</li>
-        <li>Kevin debe revisar logo más grande / más visible y corregir tonos que no corresponden a la marca.</li>
-        <li>Se confirmó que algunas plantillas y automatizaciones viejas siguen activas o visibles y deben ser rectificadas.</li>
-        <li>Kevin Barragán agregó observaciones de diseño/UI: el ícono superior de perfil resulta invasivo y sin función clara; si no tendrá función real, recomienda retirarlo.</li>
-        <li>Kevin también observó que el ícono de Wallet y el escudo de seguridad no siguen la misma lógica visual: deben unificarse en estilo y color, idealmente alineados al azul principal de la app.</li>
-        <li>Kevin indicó que el tamaño del logo debe respetarse y mantenerse consistente tanto en modo claro como en modo oscuro; pueden cambiar colores por contraste, pero no la escala.</li>
-        <li>Kevin confirmó que el botón “Respuestas rápidas” actualmente no tiene funcionalidad. Si no se conectará a un blog/centro de ayuda real, recomienda retirarlo.</li>
-        <li>Kevin también pidió revisar la consistencia tipográfica, especialmente en el bloque superior de TRM y en módulos como “Primeros pasos”, para confirmar que toda la interfaz use la misma familia tipográfica, pesos y jerarquías.</li>
-        <li>Jhonny Villegas ya revisó contratos.</li>
-        <li>Luisa compartió lista de pagos realizados durante la prueba:
-          Rosbeny, Jhonny, Gladys, Luisa, Johanna Marcela Zapata Restrepo, Andrés Holguín, Orlando, Hammer y Andrea Higuita Cardona.</li>
-      </ul>
-    </div>
-
-    
-    
-    <div class="card">
-      <h2>7.0. Estado Bitrix actualizado – cierres y seguimiento por QA</h2>
-      <p>Con base en los pantallazos compartidos, se actualiza el estado de las tareas estratégicas así:</p>
-      <ul>
-        <li><strong>P01 - Cambio de nombre:</strong> cerrada. El frente de naming base se da por ejecutado en Bitrix, pero el QA mantiene seguimiento porque aún se detectaron textos viejos y referencias heredadas en la app.</li>
-        <li><strong>P02 - Transferencia societaria / cambio de propietario:</strong> sigue en curso con foco inmediato en el cambio de dueño a <strong>G7Fintech SAS</strong> en Apple y Google.</li>
-        <li><strong>P03 - Rediseño de imágenes y descripción en App Store:</strong> cerrada/actualizada en Bitrix. Sin embargo, el QA conserva observaciones por piezas públicas todavía inconsistentes.</li>
-        <li><strong>P04 - Landing pages y actualización de contenido:</strong> cerrada en Bitrix. El QA la sigue validando para asegurar coherencia con la lógica real del producto y con las reglas operativas.</li>
-        <li><strong>P05 - Perfilamiento del usuario a FOMENTOR:</strong> figura actualizada en Bitrix, pero el propio chat de la tarea confirma que el <strong>perfilamiento dentro de la app sigue pendiente</strong>; por eso se mantiene en la Ruta de Trabajo Urgente.</li>
-        <li><strong>P06 - Firma de contratos:</strong> ya fue cerrada/completada en Bitrix, pero por criterio QA y de ejecución debe <strong>seguirse refinando dentro de la Ruta de Trabajo Urgente</strong> hasta confirmar que la experiencia de firma/aceptación quede realmente simple, digital y consistente.</li>
-        <li><strong>Detalle P06:</strong> Bitrix muestra la tarea como <strong>Completada</strong>, pero el criterio de seguimiento indica “tarea cerrada, se sigue en la Ruta de Trabajo URGENTE”, por lo que no debe retirarse del radar operativo.</li>
-      </ul>
-      <p><span class="badge blue">Criterio QA</span> Cerrar una tarea en Bitrix no significa cerrarla automáticamente en el QA. Cuando el producto real aún muestra hallazgos visibles o funcionales, el frente debe seguir vivo dentro de la Ruta de Trabajo Urgente hasta quedar consistente en la experiencia final.</p>
-    </div>
-<div class="card">
-      <h2>7.1. Actualización Bitrix – P02 Transferencia societaria / cambio de propietario</h2>
-      <p>Con base en el pantallazo de Bitrix de la tarea <strong>P02 - Transferencia societaria: G7 IT SAS → G7Fintech SAS</strong>, debe quedar actualizado dentro de la ruta de trabajo que <strong>Carlos Cárdenas procederá con el cambio de propietario a G7Fintech SAS</strong>.</p>
-      <p><strong>Aclaración importante:</strong> para este paso específico, los <strong>registros de marca u otros documentos de marca no son requeridos por las tiendas</strong>. El foco inmediato es el <strong>proceso de cambio de propietario / titularidad</strong> de las cuentas de publicación en Android y Apple.</p>
-      <h3>Proceso a dejar explícito en la ruta urgente</h3>
-      <ul>
-        <li>Verificar en <strong>App Store Connect</strong> y <strong>Google Play Console</strong> si la cuenta receptora correcta ya corresponde a <strong>G7Fintech SAS</strong>.</li>
-        <li>Definir si se usará la cuenta existente o si debe crearse una cuenta receptora nueva.</li>
-        <li>Confirmar con Apple Developer Support y Google Play Console los requisitos exactos de <strong>transferencia de titularidad / propietario</strong>.</li>
-        <li>Reunir únicamente la documentación societaria y legal mínima necesaria para la transferencia de propietario.</li>
-        <li>Ejecutar la transferencia en ambas tiendas.</li>
-        <li>Confirmar que el historial, aplicaciones, calificaciones y continuidad operativa queden conservados tras la transferencia.</li>
-      </ul>
-      <p><span class="badge red">Urgente</span> Este punto debe tratarse como <strong>frente prioritario</strong> porque afecta directamente la titularidad correcta del producto en tiendas y la continuidad de publicación bajo G7Fintech SAS.</p>
-    </div>
-<div class="card">
-      <h2>7. Ruta de Trabajo Urgente – Solo equipo G7Tech</h2>
-
-      <h3><span class="badge red">ROJO · CRÍTICO</span> Iniciar hoy mismo</h3>
-      <table>
-        <thead><tr><th>Cambio / corrección</th><th>Detalle</th><th>Responsable G7Tech</th><th>Resultado esperado</th></tr></thead>
-        <tbody>
-          <tr>
-            <td>Unificación total de marca dentro de la app <br><span class="small">P01 cerrada en Bitrix; seguimiento activo por QA</span></td>
-            <td>Eliminar G7Pay / G7BsPay / nombres viejos, actualizar headers, mensajes, onboarding, validación y assets antiguos. Aunque P01 ya fue cerrada en Bitrix, QA mantiene este frente porque aún aparecieron rastros visibles de marca vieja.</td>
-            <td>Carlos Cárdenas</td>
-            <td>La app no muestra rastro de marca vieja.</td>
-          </tr>
-          <tr>
-            <td>Recuperación de contraseña</td>
-            <td>Mostrar/ocultar contraseña, validar código estable, mejorar visibilidad de campos y resolver fallos con usuarios ya registrados.</td>
-            <td>Carlos Cárdenas · QA David Rodríguez</td>
-            <td>Flujo de recuperación estable y claro.</td>
-          </tr>
-          <tr>
-            <td>Wallet clara y estable</td>
-            <td>Dejar evidente el CTA, corregir estados KYC/wallet, arreglar scroll Android, aclarar cuando ya existe una wallet y mantener QR/copy/paste impecable.</td>
-            <td>Carlos Cárdenas · QA David Rodríguez</td>
-            <td>Usuario entiende y completa wallet sin ayuda externa.</td>
-          </tr>
-          <tr>
-            <td>Bloqueo por mínimo de liquidación</td>
-            <td>Quitar, parametrizar o dejar bypass controlado para QA / salida inmediata.</td>
-            <td>Carlos Cárdenas · QA David Rodríguez</td>
-            <td>Pruebas y flujos de bajo monto pueden cerrarse.</td>
-          </tr>
-          <tr>
-            <td>Soporte obligatorio visible</td>
-            <td>Agregar mensajes claros: soporte faltante / cargado / validado / rechazado; confirmación visual al subir soporte.</td>
-            <td>Carlos Cárdenas · QA David Rodríguez</td>
-            <td>Nadie queda rechazado sin entender la causa.</td>
-          </tr>
-          
-          <tr>
-            <td>Respuestas rápidas / FAQ</td>
-            <td>Revisar una por una las preguntas y respuestas antes de aprobar el módulo. “Enviar mensaje” está bien, pero las respuestas rápidas son pobres, insuficientes y deben fortalecerse.</td>
-            <td>Aaron Murillo · QA David Rodríguez</td>
-            <td>Módulo de ayuda con contenido útil, actualizado y realmente resolutivo.</td>
-          </tr>
-          <tr>
-            <td>Footer / texto institucional</td>
-            <td>Corregir “Power by G7” / “Power by G7Tech” por una versión correcta, uniforme y profesional en toda la app.</td>
-            <td>Aaron Murillo · QA David Rodríguez</td>
-            <td>Footer limpio y consistente, por ejemplo “Powered by G7Tech”.</td>
-          </tr>
-<tr>
-            <td>Filtro inicial del negocio <br><span class="small">P05 actualizada/cerrada en Bitrix; seguimiento activo por QA</span></td>
-            <td>Pregunta de perfilamiento streaming adulto sí/no y redirección a FOMENTOR cuando no corresponda. Aunque P05 figura actualizada en Bitrix, el propio seguimiento operativo indica que el perfilamiento dentro de la app sigue pendiente y debe continuar en la ruta urgente.</td>
-            <td>Aaron Murillo · QA David Rodríguez</td>
-            <td>El usuario correcto entra al flujo correcto.</td>
-          </tr>
-          <tr>
-            <td>Priorizar modo blanco</td>
-            <td>Si dark mode no queda estable, asegurar que el release se vea y funcione bien en blanco.</td>
-            <td>Carlos Cárdenas · QA David Rodríguez</td>
-            <td>La experiencia visible del release es publicable.</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3><span class="badge amber">NARANJA · ALTA</span> Resolver en parche inmediato o release corto siguiente</h3>
-      <table>
-        <thead><tr><th>Cambio / corrección</th><th>Detalle</th><th>Responsable G7Tech</th><th>Resultado esperado</th></tr></thead>
-        <tbody>
-          <tr>
-            <td>Tiendas / ficha pública <br><span class="small">P03 cerrada en Bitrix; seguimiento activo por QA</span></td>
-            <td>Nombre, subtítulo, descripción, screenshots, logo visible, eliminación de mensajes viejos y referencias no alineadas. Aunque P03 fue cerrada/actualizada en Bitrix, el QA sigue este frente hasta limpiar por completo la ejecución pública.</td>
-            <td>Aaron Murillo · QA David Rodríguez</td>
-            <td>Ficha pública coherente con G7Cripto actual.</td>
-          </tr>
-          <tr>
-            <td>Notificaciones</td>
-            <td>Unificar eventos de depósito, aprobación, monetización y liquidación en correo/teléfono/push según aplique.</td>
-            <td>Carlos Cárdenas · QA David Rodríguez</td>
-            <td>Comportamiento consistente en todos los casos.</td>
-          </tr>
-          <tr>
-            <td>Dashboard y estados</td>
-            <td>Reflejar: wallet recibió fondos, soporte, aprobación, saldo USD, monetización y liquidación.</td>
-            <td>Carlos Cárdenas · QA David Rodríguez</td>
-            <td>Backoffice y app muestran el mismo estado operativo.</td>
-          </tr>
-          <tr>
-            <td>Selector de plataforma</td>
-            <td>Definir criterio único y explicarlo dentro del formulario.</td>
-            <td>Carlos Cárdenas · QA David Rodríguez</td>
-            <td>El usuario sabe qué plataforma elegir al monetizar.</td>
-          </tr>
-          <tr>
-            <td>Menú inferior y lateral</td>
-            <td>Reducir peso visual, mejorar visibilidad de íconos, hacer que no estorbe ni tape contenido.</td>
-            <td>Carlos Cárdenas · QA David Rodríguez</td>
-            <td>Navegación más limpia y menos invasiva.</td>
-          </tr>
-          <tr>
-            <td>Ícono de perfil y coherencia de íconos</td>
-            <td>Definir si el ícono superior de perfil tendrá una función real; si no, reducirlo o retirarlo. Unificar escudo de seguridad, wallet y demás íconos del módulo bajo una misma familia visual y cromática.</td>
-            <td>Carlos Cárdenas · QA David Rodríguez</td>
-            <td>Interfaz más coherente, menos invasiva y más pulida.</td>
-          </tr>
-          <tr>
-            <td>FAQ funcional o retiro temporal</td>
-            <td>Si “Respuestas rápidas” no se conectará a un blog/centro de ayuda real, retirarlo temporalmente. Si se mantiene, debe responder, abrir contenido útil y aportar tráfico a un destino funcional.</td>
-            <td>Carlos Cárdenas / Aaron Murillo · QA David Rodríguez</td>
-            <td>Módulo de ayuda sin botones decorativos ni expectativas falsas.</td>
-          </tr>
-          <tr>
-            <td>Consistencia tipográfica</td>
-            <td>Revisar toda la app para confirmar que TRM, encabezados, tarjetas y módulos como “Primeros pasos” usen la misma familia tipográfica, pesos y jerarquías. Corregir cualquier variación no intencional.</td>
-            <td>Carlos Cárdenas · QA David Rodríguez</td>
-            <td>Interfaz uniforme y visualmente más pulida.</td>
-          </tr>
-          <tr>
-            <td>Flujo de firma y aceptación digital <br><span class="small">P06 cerrada en Bitrix; seguimiento activo por QA</span></td>
-            <td>Aunque la tarea ya fue completada en Bitrix, debe mantenerse en la Ruta de Trabajo Urgente hasta confirmar que el proceso de firma sea realmente fluido, digital, sin pasos manuales innecesarios y consistente para el usuario final.</td>
-            <td>Carlos Cárdenas · QA David Rodríguez</td>
-            <td>Proceso de firma simple, claro y sin fricciones de activación.</td>
-          </tr>
-          <tr>
-            <td>Wallet post-aprobación y consistencia de flujo <br><span class="small">P07 cerrada en Bitrix; seguimiento activo por QA</span></td>
-            <td>Aunque la tarea fue finalizada en Bitrix, se mantiene validación sobre creación automática de wallet tras aprobación, claridad de estados, redirección y experiencia real del usuario.</td>
-            <td>Carlos Cárdenas · QA David Rodríguez</td>
-            <td>Creación de wallet sin fricción tras aprobación de cuenta.</td>
-          </tr>
-          <tr>
-            <td>Wallets/KYC/saldos USD <br><span class="small">P08 cerrada en Bitrix; seguimiento activo por QA</span></td>
-            <td>Se mantiene seguimiento para confirmar que wallets propias, KYC Binance y visualización de saldos en USD funcionen de forma coherente para todos los usuarios reales.</td>
-            <td>Carlos Cárdenas · QA David Rodríguez</td>
-            <td>Saldos y wallets consistentes en la experiencia real.</td>
-          </tr>
-          <tr>
-            <td>Monetización y aprobación <br><span class="small">P09 cerrada en Bitrix; seguimiento activo por QA</span></td>
-            <td>Seguir perfeccionando la ejecución real del flujo de soporte, revisión, aprobación, saldo USD, monetización y liquidación.</td>
-            <td>Carlos Cárdenas · QA David Rodríguez</td>
-            <td>Flujo de monetización estable y entendible para el usuario.</td>
-          </tr>
-          <tr>
-            <td>Dashboard: análisis/corrección/cotización <br><span class="small">P10 pendiente y urgente</span></td>
-            <td>Queda pendiente de análisis por parte de Carlos Cárdenas. Debe tratarse como urgente y luego abrir una ruta separada para tecnología, seguridad y actualización estructural del dashboard.</td>
-            <td>Carlos Cárdenas</td>
-            <td>Diagnóstico completo y ruta específica para resolver dashboard.</td>
-          </tr>
-          <tr>
-            <td>Sistema de referidos <br><span class="small">P11 pendiente de perfeccionar</span></td>
-            <td>Revisar nuevamente y terminar el sistema; es importante perfeccionar los códigos de referidos y su lógica operativa.</td>
-            <td>Carlos Cárdenas</td>
-            <td>Referidos funcionales, claros y listos para evolución futura.</td>
-          </tr>
-          <tr>
-            <td>Contratos y textos legales <br><span class="small">P12 cerrada en Bitrix; seguimiento de ejecución por QA</span></td>
-            <td>La tarea ya fue completada y archivada en Bitrix. QA mantiene verificación de que los cambios sí estén reflejados en la app, textos visibles y flujos reales.</td>
-            <td>Carlos Cárdenas · QA David Rodríguez</td>
-            <td>Reflejo completo de ajustes legales en la experiencia final.</td>
-          </tr>
-          <tr>
-            <td>Plantillas y automatizaciones viejas</td>
-            <td>Limpiar mensajes heredados, correos viejos y automatizaciones no vigentes.</td>
-            <td>Carlos Cárdenas / Aaron Murillo · QA David Rodríguez</td>
-            <td>Comunicación coherente con la versión actual del producto.</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3><span class="badge green">VERDE · MEDIA/BAJA</span> Sprint corto de refinamiento</h3>
-      <table>
-        <thead><tr><th>Cambio / corrección</th><th>Detalle</th><th>Responsable G7Tech</th><th>Resultado esperado</th></tr></thead>
-        <tbody>
-          <tr>
-            <td>Optimización visual general</td>
-            <td>Refinar espaciados, loaders, jerarquía en monetización/liquidación y menú lateral.</td>
-            <td>Carlos Cárdenas · QA David Rodríguez</td>
-            <td>Producto más pulido sin rehacer arquitectura.</td>
-          </tr>
-          <tr>
-            <td>Revisión de landings y conexión con filtro inicial <br><span class="small">P04 cerrada en Bitrix; seguimiento activo por QA</span></td>
-            <td>Confirmar que páginas públicas y redirecciones estén totalmente alineadas con el nuevo flujo. P04 ya fue cerrada en Bitrix, pero la validación QA continúa para asegurar consistencia entre promesa comercial y operación real.</td>
-            <td>Aaron Murillo · QA David Rodríguez</td>
-            <td>Consistencia entre app y superficies públicas.</td>
-          </tr>
-          <tr>
-            <td>Regresión integral</td>
-            <td>Android claro/oscuro, iPhone blanco, usuario nuevo, usuario registrado, wallet, soporte, monetización, liquidación y notificaciones.</td>
-            <td>David Rodríguez</td>
-            <td>Release con menor riesgo y errores anticipados.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="card">
-      <h2>8. Ideas para mejorar la experiencia del usuario</h2>
-      <ul>
-        <li>Agregar un <strong>checklist interno</strong> visible: crear wallet → copiar dirección → registrarla en plataforma → esperar pago → subir soporte → monetizar → liquidar.</li>
-        <li>Mostrar estados claros: <span class="pill">Pago recibido</span> <span class="pill">Soporte cargado</span> <span class="pill">Soporte validado</span> <span class="pill">Saldo USD aprobado</span> <span class="pill">Listo para liquidar</span>.</li>
-        <li>Explicar con una línea corta qué hace el botón <strong>Max</strong> y qué plataforma debe escoger el usuario al monetizar.</li>
-        <li>Reducir peso visual de la barra inferior y mejorar contraste de íconos.</li>
-        <li>Mantener el <strong>modo blanco</strong> como base de referencia mientras dark mode se estabiliza.</li>
-        <li>Dar confirmaciones fuertes y visibles después de eventos importantes: wallet creada, pago recibido, soporte cargado, monetización aprobada, liquidación enviada.</li>
-        <li>Hacer explícito que el soporte de venta/payout es obligatorio por cumplimiento y que sin él la operación puede rechazarse.</li>
-        <li>Reescribir y fortalecer el módulo de <strong>Respuestas rápidas</strong> con preguntas reales del usuario, respuestas más completas y lenguaje claro; no dejarlo como un FAQ decorativo.</li>
-        <li>Corregir el footer institucional en toda la app y definir una sola versión oficial del texto de crédito tecnológico.</li>
-        <li>Agregar ayudas contextuales cortas debajo de campos críticos: monto, plataforma, tipo de retiro, soporte requerido y uso del botón Max.</li>
-        <li>Incluir confirmación visual inequívoca después de cada acción importante: soporte cargado, monetización enviada, monetización aprobada, liquidación solicitada, pago enviado.</li>
-        <li>Mostrar mensajes de error accionables, no genéricos: indicar qué faltó, qué se debe corregir y cuál es el siguiente paso.</li>
-        <li>Separar visualmente “saldo en wallet”, “pendiente por validar”, “saldo en USD aprobado” y “saldo listo para liquidar” para reducir confusión operativa.</li>
-        <li>Definir una <strong>familia única de íconos</strong> para toda la app: mismo nivel de minimalismo, grosor y tono cromático entre wallet, seguridad, perfil y navegación.</li>
-        <li>Evitar elementos que generen expectativas falsas: si el usuario ve un ícono de perfil o un botón de FAQ, debe poder usarlo realmente.</li>
-        <li>Conectar el módulo de ayuda a un <strong>centro de contenido real</strong> (blog / base de conocimiento / FAQ web). Si ese destino no existe todavía, ocultar el acceso hasta que esté listo.</li>
-        <li>Definir una sola regla visual de marca para el logo: misma escala, mismas proporciones y versiones claras/oscuras preparadas solo para contraste.</li>
-        <li>Definir un <strong>sistema tipográfico único</strong> para toda la app: misma familia, pesos claros para títulos/subtítulos y criterios consistentes en TRM, cards, formularios y módulos operativos.</li>
-        <li>Documentar en un checklist interno de publicación el <strong>cambio de propietario</strong> en Apple y Google para evitar reprocesos futuros y dejar claro qué documentos sí se exigen y cuáles no en ese trámite.</li>
-
-
-      </ul>
-    </div>
-
-    <div class="card">
-      <h2>9. Cierre ejecutivo</h2>
-      <p>La distancia entre lo prometido por la ruta estratégica del 24 de marzo y la experiencia real de los usuarios ya es <strong>mucho menor</strong>: la app ya crea wallets, ya recibió fondos reales, ya mostró saldos y ya recorrió monetización/liquidación en varios casos. El problema ya no es inexistencia del flujo, sino <strong>claridad, consistencia y control</strong>.</p>
-      <p>Por eso, el foco del equipo G7Tech debe ser inmediato: <strong>limpiar marca, estabilizar acceso, dejar wallet clara, volver evidente el soporte obligatorio, corregir notificaciones, destrabar liquidación y publicar una versión visualmente confiable</strong>.</p>
-    </div>
+  <div class="mast-note">
+    <strong>Criterio rector actualizado del producto:</strong> G7Cripto está enfocada exclusivamente al gremio de streaming adulto. El flujo correcto exige wallet propia, recepción del pago, notificación, reflejo en Dashboard, carga de soporte de venta/payout, validación interna, aprobación del valor en USD, monetización, liquidación, tesorería, finanzas y conciliación final.
   </div>
-
-  <div class="footer">
-    Documento consolidado con base en la información subida en el chat, actualizaciones Bitrix hasta el 25 de abril de 2026 y contraste contra la Ruta de Trabajo G7Cripto v4 del 24 de marzo de 2026.
+  <div class="mast-note" style="margin-top:10px;background:rgba(39,174,96,0.15);border:1px solid rgba(39,174,96,0.4);">
+    <strong style="color:#A9DFBF">Responsable del QA:</strong> <span style="color:#fff;font-weight:600">Guillermo L. Valencia</span><br>
+    <span style="color:rgba(255,255,255,0.72);font-size:13px">Lidera la revisión, recolección de hallazgos, validación del flujo y consolidación del diagnóstico final de G7Cripto.</span>
   </div>
 </div>
+
+<!-- ═══════════════ KPI STRIP ═══════════════ -->
+<div class="kpi-strip">
+  <div class="kpi-card">
+    <div class="kpi-label">Usuarios en QA</div>
+    <div class="kpi-val">11</div>
+    <div class="kpi-sub">Con evidencia documentada</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Fallas críticas</div>
+    <div class="kpi-val" style="color:var(--red)">8</div>
+    <div class="kpi-sub">Funcionales + marca</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Puntos de ruta</div>
+    <div class="kpi-val">28</div>
+    <div class="kpi-sub">🔴×9 · 🟠×16 · 🟢×3</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Release objetivo</div>
+    <div class="kpi-val" style="color:var(--green)">Lun</div>
+    <div class="kpi-sub">Parche de emergencia</div>
+  </div>
+</div>
+
+<!-- ═══════════════ 1. RESUMEN EJECUTIVO ═══════════════ -->
+<div class="card">
+  <div class="sec-lbl">Sección 1</div>
+  <div class="sec-title">Resumen ejecutivo</div>
+  <div class="infobox" style="margin-bottom:16px">👤 <strong>Responsable del QA:</strong> Guillermo L. Valencia — Lidera la revisión, recolección de hallazgos, validación del flujo y consolidación del diagnóstico final.</div>
+  <div class="warnbox" style="margin-bottom:12px">🔧 <strong>Actualización Bitrix P02:</strong> Carlos Cárdenas debe proceder con el cambio de propietario a <strong>G7Fintech SAS</strong> en App Store y Google Play. Para este paso específico, los registros de marca no son el requisito central; lo urgente es asegurar la transferencia de titularidad y continuidad de las cuentas de publicación.</div>
+  <div class="infobox" style="margin-bottom:16px">📋 <strong>Actualización Bitrix de cierre:</strong> las tareas <strong>P01, P03, P04, P05, P06, P07, P08, P09 y P12</strong> ya fueron cerradas/completadas en Bitrix; <strong>P02</strong> sigue encaminada al cambio de propietario bajo G7Fintech SAS; <strong>P10</strong> queda pendiente de análisis urgente para dashboard; y <strong>P11</strong> sigue pendiente de perfeccionamiento. Aun así, por criterio de QA, los frentes cerrados en Bitrix deben <strong>seguirse refinando dentro de la Ruta de Trabajo Urgente</strong> cuando todavía existan pendientes visibles en la app, tiendas o experiencia real del usuario.</div>
+  <div class="g2" style="gap:20px;align-items:start">
+    <div>
+      <p style="font-size:14px;color:var(--ink2);margin-bottom:12px">El QA confirma que G7Cripto <strong>ya tiene una base funcional real</strong>: genera wallets automáticas, permite USDT/USDC/BTC, muestra QR y copy/paste de direcciones, registra depósitos, refleja movimientos y en varios casos llegó a monetización aprobada y liquidación.</p>
+      <div class="successbox">✅ <strong>Lo que sí funciona:</strong> generación de wallets, recepción de fondos, flujo soporte → revisión → aprobación → monetización, Dashboard con visibilidad operativa.</div>
+    </div>
+    <div>
+      <p style="font-size:14px;color:var(--ink2);margin-bottom:12px">Sin embargo, el producto <strong>todavía no está listo para relanzarse sin un parche urgente</strong>: persisten fallas de marca, dark mode, recuperación de contraseña, claridad del flujo wallet/soporte, notificaciones inconsistentes y bloqueo por monto mínimo de liquidación.</p>
+      <div class="warnbox">⚠️ <strong>Recomendación:</strong> iniciar cambios hoy mismo y usar <strong>modo blanco</strong> como experiencia visual prioritaria mientras dark mode termina de estabilizarse.</div>
+    <div class="infobox" style="margin-top:12px">📌 <strong>Actualización QA:</strong> la sección <em>Enviar mensaje</em> dentro de soporte se considera correcta. Las <em>Respuestas rápidas</em> quedan observadas por contenido pobre y deben revisarse antes de darse por aprobadas. Adicionalmente, el footer <em>"Power by G7 / Power by G7Tech"</em> es un hallazgo transversal que debe sustituirse por una versión profesional y uniforme en toda la app.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 2. AVANCE VS RUTA MARZO ═══════════════ -->
+<div class="card">
+  <div class="sec-lbl">Sección 2</div>
+  <div class="sec-title">Avance vs. Ruta de Trabajo — Marzo 24</div>
+  <div style="overflow-x:auto">
+  <table class="avance-table">
+    <thead>
+      <tr>
+        <th style="width:72px">Punto</th>
+        <th>Descripción</th>
+        <th style="width:150px">Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>P7 / P8</strong></td>
+        <td>Flujo de wallet y wallets por cliente — USDT/USDC/BTC disponibles, QR y copy/paste funcionando, recepción de fondos confirmada en varios casos, historial y detalle de depósito visible.</td>
+        <td><span class="badge b-green">✓ Avance alto</span></td>
+      </tr>
+      <tr>
+        <td><strong>P9</strong></td>
+        <td>Monetización — Flujo soporte → revisión → aprobación → monetización → liquidación confirmado. Modelo manual en partes críticas, como lo planteaba la ruta.</td>
+        <td><span class="badge b-green">✓ Avance alto</span></td>
+      </tr>
+      <tr>
+        <td><strong>P10</strong></td>
+        <td>Dashboard — Participa en la operación real. Carlos puede ver soportes y movimientos desde el backoffice.</td>
+        <td><span class="badge b-green">✓ Avance alto</span></td>
+      </tr>
+      <tr>
+        <td><strong>P3</strong></td>
+        <td>Tiendas y assets — Trabajo en identidad y screenshots realizado, pero siguen apareciendo textos viejos, "G7BsPay" debajo de "G7Cripto", descripción errada y logo poco visible.</td>
+        <td><span class="badge b-amber">⚠ Parcial</span></td>
+      </tr>
+      <tr>
+        <td><strong>P4 / P5</strong></td>
+        <td>Landings públicas y perfilamiento inicial — Definido estratégicamente (streaming adulto → continúa; otro perfil → FOMENTOR), pero no asegurado operativamente en la app.</td>
+        <td><span class="badge b-amber">⚠ Parcial</span></td>
+      </tr>
+      <tr>
+        <td><strong>P1</strong></td>
+        <td>Unificación de marca — "Bienvenid@ a G7Pay" sigue apareciendo; textos mezclados entre G7Pay, G7BsPay, G7 BSP; logos viejos en Didit y pantallas de validación.</td>
+        <td><span class="badge b-red">✗ Pendiente</span></td>
+      </tr>
+      <tr>
+        <td><strong>P2</strong></td>
+        <td>Razón social visible — Siguen apareciendo nombres anteriores en partes públicas y contractuales de la app.</td>
+        <td><span class="badge b-red">✗ Pendiente</span></td>
+      </tr>
+      <tr>
+        <td><strong>P6 / P12</strong></td>
+        <td>Contratos y textos legales — Jhonny Villegas ya revisó contratos, pero los cambios aún deben reflejarse en app, textos visibles y flujos de aceptación bajo esquema G7Fintech SAS.</td>
+        <td><span class="badge b-red">✗ Pendiente</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="infobox" style="margin-top:16px">📎 <strong>Referencia:</strong> Bitrix_103334 · Ruta de Trabajo G7Cripto v4 · 24 marzo 2026.</div>
+</div>
+
+<!-- ═══════════════ 3. FLUJO OFICIAL ═══════════════ -->
+<div class="card">
+  <div class="sec-lbl">Sección 3</div>
+  <div class="sec-title">Flujo oficial correcto — base para desarrollo y QA</div>
+  <div class="steps">
+    <div class="step"><div class="step-n">1</div><div class="step-t">El cliente <strong>genera su wallet</strong> desde la app.</div></div>
+    <div class="step"><div class="step-n">2</div><div class="step-t"><strong>Registra esa wallet</strong> en su plataforma de streaming.</div></div>
+    <div class="step"><div class="step-n">3</div><div class="step-t">La plataforma <strong>realiza el pago</strong> a la wallet.</div></div>
+    <div class="step"><div class="step-n">4</div><div class="step-t">Al cliente le llega <strong>notificación</strong> informando que recibió fondos.</div></div>
+    <div class="step"><div class="step-n">5</div><div class="step-t">El <strong>Dashboard refleja</strong> que esa wallet recibió fondos.</div></div>
+    <div class="step"><div class="step-n">6</div><div class="step-t">El cliente sube el <strong>soporte de venta o payout</strong> de la plataforma.</div></div>
+    <div class="step"><div class="step-n">7</div><div class="step-t">El <strong>equipo interno valida</strong> el soporte.</div></div>
+    <div class="step"><div class="step-n">8</div><div class="step-t"><strong>Solo después de la validación</strong> el valor se aprueba como saldo en USD.</div></div>
+    <div class="step"><div class="step-n">9</div><div class="step-t">El cliente <strong>solicita la liquidación</strong>.</div></div>
+    <div class="step"><div class="step-n">10</div><div class="step-t"><strong>Tesorería</strong> procesa el pago.</div></div>
+    <div class="step"><div class="step-n">11</div><div class="step-t"><strong>Finanzas concilia</strong> la operación.</div></div>
+    <div class="step"><div class="step-n">12</div><div class="step-t">Se <strong>cierra la operación</strong> completamente.</div></div>
+  </div>
+  <div class="warnbox" style="margin-top:16px">⚠️ <strong>Aclaración clave:</strong> el saldo <em>no</em> debe quedar libre en USD solo por recibir fondos en la wallet. Antes debe existir soporte cargado y validación interna aprobada. Esto se mantiene por cumplimiento legal y por la lógica operativa declarada ante aliados de pago.</div>
+</div>
+
+<!-- ═══════════════ 4. HALLAZGOS ═══════════════ -->
+<div class="card">
+  <div class="sec-lbl">Sección 4</div>
+  <div class="sec-title">Hallazgos QA consolidados</div>
+
+  <h3 style="color:var(--red);font-size:15px;margin-bottom:12px;font-family:'DM Sans',sans-serif">A · Hallazgos críticos funcionales</h3>
+  <div class="hall-grid" style="margin-bottom:22px">
+    <div class="hall h-red"><div class="hall-cod">CRIT-01</div><div class="hall-title">Marca inconsistente en toda la app</div><div class="hall-desc">Siguen apareciendo G7Pay, G7BsPay, G7 BSP y logos antiguos en onboarding, validación, tienda y textos visibles.</div></div>
+    <div class="hall h-red"><div class="hall-cod">CRIT-02</div><div class="hall-title">Dark mode afecta la usabilidad</div><div class="hall-desc">Bajo contraste, logo poco visible, tonos no marca, botones e íconos que se pierden en fondo oscuro.</div></div>
+    <div class="hall h-red"><div class="hall-cod">CRIT-03</div><div class="hall-title">Recuperación de contraseña inestable</div><div class="hall-desc">Códigos que llegan pero fallan al validar, entradas poco visibles, falta botón de mostrar/ocultar contraseña.</div></div>
+    <div class="hall h-red"><div class="hall-cod">CRIT-04</div><div class="hall-title">Creación de wallet confusa</div><div class="hall-desc">CTA poco evidente, estados ambiguos, scroll roto en algunos Android; usuarios sin saber si la wallet ya estaba creada.</div></div>
+    <div class="hall h-red"><div class="hall-cod">CRIT-05</div><div class="hall-title">Mínimo de liquidación bloqueante</div><div class="hall-desc">Mínimo de 20 USD bloqueó pruebas reales de 4–5 USD. Nadie pudo cerrar el ciclo completo excepto Carlos.</div></div>
+    <div class="hall h-red"><div class="hall-cod">CRIT-06</div><div class="hall-title">Soporte obligatorio sin mensaje claro</div><div class="hall-desc">Si no se sube, la operación se rechaza, pero la app no lo explica ni confirma con suficiente visibilidad.</div></div>
+    <div class="hall h-red"><div class="hall-cod">CRIT-07</div><div class="hall-title">Selector de plataforma confuso</div><div class="hall-desc">No queda claro qué plataforma escoger en algunos escenarios al momento de monetizar (Chaturbate, Stripchat, tokens…).</div></div>
+    <div class="hall h-red"><div class="hall-cod">CRIT-08</div><div class="hall-title">Notificaciones inconsistentes</div><div class="hall-desc">En unos casos sí llegan por correo/teléfono; en otros no llegan o llegan plantillas viejas. Sin patrón uniforme.</div></div>
+  </div>
+
+  <h3 style="color:var(--amber);font-size:15px;margin-bottom:12px;font-family:'DM Sans',sans-serif">B · Hallazgos visuales</h3>
+  <div class="hall-grid" style="margin-bottom:22px">
+    <div class="hall h-amber"><div class="hall-cod">VIS-01</div><div class="hall-title">Modo blanco vs. dark mode</div><div class="hall-desc">Modo blanco es claramente superior: más legible, limpio y presentable. Dark mode no está en condiciones de publicarse.</div></div>
+    <div class="hall h-amber"><div class="hall-cod">VIS-02</div><div class="hall-title">Barra inferior pesada</div><div class="hall-desc">Se siente invasiva y a veces tapa el contenido. Estados activo/inactivo con poco contraste.</div></div>
+    <div class="hall h-amber"><div class="hall-cod">VIS-03</div><div class="hall-title">Menú lateral rígido</div><div class="hall-desc">Mejora en modo blanco, pero la composición y jerarquía siguen sin refinamiento.</div></div>
+    <div class="hall h-amber"><div class="hall-cod">VIS-04</div><div class="hall-title">Monetización sobrecargada</div><div class="hall-desc">Demasiados campos y texto. Liquidación más clara pero necesita más guía visual.</div></div>
+    <div class="hall h-amber"><div class="hall-cod">VIS-05</div><div class="hall-title">Ícono/logo en tienda</div><div class="hall-desc">Se percibe pequeño y con poca presencia en la grilla de App Store y Play Store.</div></div>
+    <div class="hall h-amber"><div class="hall-cod">VIS-06</div><div class="hall-title">Wallet — mejor módulo</div><div class="hall-desc">El más logrado visualmente, pero aún necesita pulido de estados, espaciados y mensajes contextuales.</div></div>
+  </div>
+
+  <h3 style="color:var(--blue-m);font-size:15px;margin-bottom:12px;font-family:'DM Sans',sans-serif">C · Hallazgos operativos</h3>
+  <div class="hall-grid">
+    <div class="hall h-blue"><div class="hall-cod">OPE-01</div><div class="hall-title">Soporte es obligatorio</div><div class="hall-desc">El soporte de venta/payout es obligatorio para aprobación y liquidación. Debe ser evidente en la app.</div></div>
+    <div class="hall h-blue"><div class="hall-cod">OPE-02</div><div class="hall-title">Dashboard incompleto</div><div class="hall-desc">Lee parte de la operación pero debe reflejar fondos recibidos, soporte, aprobación y estado de monetización/liquidación.</div></div>
+    <div class="hall h-blue"><div class="hall-cod">OPE-03</div><div class="hall-title">Automatizaciones viejas activas</div><div class="hall-desc">Plantillas heredadas, correos viejos y automatizaciones no vigentes siguen visibles o activas.</div></div>
+    <div class="hall h-blue"><div class="hall-cod">OPE-04</div><div class="hall-title">Contratos — cambios pendientes de reflejar</div><div class="hall-desc">Jhonny Villegas ya revisó los contratos, pero los cambios aún deben propagarse a la app, textos visibles y flujos de aceptación.</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════ 5. USUARIOS ═══════════════ -->
+<div class="card">
+  <div class="sec-lbl">Sección 5</div>
+  <div class="sec-title">Estado de la prueba por usuarios</div>
+  <div style="overflow-x:auto">
+  <table class="usr-table">
+    <thead>
+      <tr>
+        <th style="min-width:160px">Usuario</th>
+        <th>Wallet / Recepción</th>
+        <th>Monetización</th>
+        <th>Liquidación</th>
+        <th>Notificaciones</th>
+        <th>Notas QA</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><div class="usr-name">Rosbeny Salas</div></td>
+        <td><span class="dot dot-green"></span>Recibió 5 USDT</td>
+        <td><span class="dot dot-green"></span>Aprobada / disponible</td>
+        <td><span class="dot dot-amber"></span>Bloqueada por mínimo</td>
+        <td>Correo y teléfono OK en un momento; antes sin notif. de ingreso</td>
+        <td class="usr-note">Caso de referencia para inconsistencias de notificación y bloqueo por monto.</td>
+      </tr>
+      <tr>
+        <td><div class="usr-name">Jhonny Villegas</div></td>
+        <td><span class="dot dot-green"></span>Recibió 5 USDT</td>
+        <td><span class="dot dot-green"></span>Aprobada</td>
+        <td><span class="dot dot-amber"></span>Disponible; bloqueado mínimo</td>
+        <td>Recibió aprobación para liquidar; no llegó notif. de depósito inicial</td>
+        <td class="usr-note">Reportó cambio necesario en nombre del número de teléfono. Ya revisó contratos.</td>
+      </tr>
+      <tr>
+        <td><div class="usr-name">Gladys Vilchez</div></td>
+        <td><span class="dot dot-green"></span>Recibió fondos</td>
+        <td><span class="dot dot-amber"></span>En lista de pagos</td>
+        <td><span class="dot dot-gray"></span>Sin cierre completo</td>
+        <td>Subió plantillas de automatización vieja</td>
+        <td class="usr-note">Previa inconsistencia de KYC/wallet. Evidencia de automatización antigua activa.</td>
+      </tr>
+      <tr>
+        <td><div class="usr-name">Luisa Vallejo</div></td>
+        <td><span class="dot dot-green"></span>En lista de pagos</td>
+        <td><span class="dot dot-blue"></span>Rol coordinador</td>
+        <td><span class="dot dot-green"></span>Indicó cuándo liquidar</td>
+        <td>No aplica como usuario final</td>
+        <td class="usr-note">Validó soportes, Dashboard y regla operativa del flujo.</td>
+      </tr>
+      <tr>
+        <td><div class="usr-name">Johanna M. Zapata</div></td>
+        <td><span class="dot dot-green"></span>En lista de pagos</td>
+        <td><span class="dot dot-gray"></span>Sin detalle</td>
+        <td><span class="dot dot-gray"></span>Sin detalle</td>
+        <td>Sin detalle</td>
+        <td class="usr-note">Marcar para confirmación de cierre completo en próxima ronda de QA.</td>
+      </tr>
+      <tr>
+        <td><div class="usr-name">Andrés Holguín</div></td>
+        <td><span class="dot dot-green"></span>Recibió 5 USDT</td>
+        <td><span class="dot dot-green"></span>Aprobada; saldo USD disponible</td>
+        <td><span class="dot dot-amber"></span>Bloqueado por mínimo</td>
+        <td>No llegó notif. de depósito; sí llegó aprobación para liquidar</td>
+        <td class="usr-note">Reportó estado "pendiente" en un momento durante la prueba.</td>
+      </tr>
+      <tr>
+        <td><div class="usr-name">Orlando Pacheco</div></td>
+        <td><span class="dot dot-green"></span>Recibió 5 USDT</td>
+        <td><span class="dot dot-green"></span>Avanzó a monetización</td>
+        <td><span class="dot dot-amber"></span>Bloqueado por mínimo</td>
+        <td>No notificó ingreso en wallet</td>
+        <td class="usr-note">Reportó botones poco visibles y wallet ya generada desde sesión anterior.</td>
+      </tr>
+      <tr>
+        <td><div class="usr-name">Hammer Tapias</div></td>
+        <td><span class="dot dot-amber"></span>Problemas scroll/creación previa</td>
+        <td><span class="dot dot-green"></span>Recibió y liquidó en iteración posterior</td>
+        <td><span class="dot dot-green"></span>Mensaje "pago enviado"</td>
+        <td>Mensajes automáticos de pago enviado</td>
+        <td class="usr-note">Relevante para tutoriales y experiencia Android. Único caso de ciclo completo.</td>
+      </tr>
+      <tr>
+        <td><div class="usr-name">Andrea H. Cardona</div></td>
+        <td><span class="dot dot-green"></span>En lista de pagos</td>
+        <td><span class="dot dot-amber"></span>Dudas sobre plataforma</td>
+        <td><span class="dot dot-gray"></span>Sin cierre completo</td>
+        <td>Sin detalle</td>
+        <td class="usr-note">Su duda detonó revisión del selector de plataforma en monetización.</td>
+      </tr>
+      <tr>
+        <td><div class="usr-name">Claudia Atehortua</div></td>
+        <td><span class="dot dot-green"></span>Wallet creada y primer envío</td>
+        <td><span class="dot dot-amber"></span>En seguimiento</td>
+        <td><span class="dot dot-amber"></span>En seguimiento</td>
+        <td>Sin detalle final</td>
+        <td class="usr-note">Reportó problemas previos de wallet y carga de soportes.</td>
+      </tr>
+      <tr>
+        <td><div class="usr-name">Carlos Cárdenas</div><div class="usr-note" style="color:var(--blue)">Validación interna</div></td>
+        <td><span class="dot dot-blue"></span>Validación interna</td>
+        <td><span class="dot dot-green"></span>Ejecutó monetización de prueba</td>
+        <td><span class="dot dot-amber"></span>Liquidación pendiente por −5 USD</td>
+        <td>No aplica como usuario final</td>
+        <td class="usr-note">Su caso evidencia diferencia de permisos/reglas vs. usuarios reales.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- ═══════════════ 6. INFORMACIÓN ADICIONAL ═══════════════ -->
+<div class="card">
+  <div class="sec-lbl">Sección 6</div>
+  <div class="sec-title">Información adicional archivada — 24 de abril</div>
+  <div class="g2" style="gap:20px;align-items:start">
+    <div>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
+        <li style="font-size:14px;color:var(--ink2);display:flex;gap:10px"><span style="color:var(--blue-m);font-weight:700;flex-shrink:0">→</span>Reporte QA + ruta urgente compartidos con el equipo para iniciar cambios de inmediato.</li>
+        <li style="font-size:14px;color:var(--ink2);display:flex;gap:10px"><span style="color:var(--blue-m);font-weight:700;flex-shrink:0">→</span>Carlos indicó intención de trabajar cambios este fin de semana para publicar el domingo y tener versión activa el lunes.</li>
+        <li style="font-size:14px;color:var(--ink2);display:flex;gap:10px"><span style="color:var(--blue-m);font-weight:700;flex-shrink:0">→</span>Kevin debe revisar logo más grande/visible y corregir tonos que no corresponden a la marca.</li>
+        <li style="font-size:14px;color:var(--ink2);display:flex;gap:10px"><span style="color:var(--blue-m);font-weight:700;flex-shrink:0">→</span><strong>Kevin Barragán — observaciones de diseño/UI:</strong> el ícono superior de perfil resulta invasivo y sin función clara; si no tendrá función real, recomienda retirarlo.</li>
+        <li style="font-size:14px;color:var(--ink2);display:flex;gap:10px"><span style="color:var(--blue-m);font-weight:700;flex-shrink:0">→</span>Kevin observó que el ícono de Wallet y el escudo de seguridad no siguen la misma lógica visual: deben unificarse en estilo y color, idealmente alineados al azul principal de la app.</li>
+        <li style="font-size:14px;color:var(--ink2);display:flex;gap:10px"><span style="color:var(--blue-m);font-weight:700;flex-shrink:0">→</span>Kevin indicó que el tamaño del logo debe respetarse y mantenerse consistente en modo claro y oscuro; pueden cambiar colores por contraste, pero no la escala.</li>
+        <li style="font-size:14px;color:var(--ink2);display:flex;gap:10px"><span style="color:var(--blue-m);font-weight:700;flex-shrink:0">→</span>Kevin confirmó que el botón "Respuestas rápidas" actualmente no tiene funcionalidad. Si no se conectará a un blog/centro de ayuda real, recomienda retirarlo.</li>
+        <li style="font-size:14px;color:var(--ink2);display:flex;gap:10px"><span style="color:var(--blue-m);font-weight:700;flex-shrink:0">→</span>Kevin pidió revisar la consistencia tipográfica, especialmente en el bloque de TRM y en módulos como "Primeros pasos", para confirmar que toda la interfaz use la misma familia tipográfica, pesos y jerarquías.</li>
+        <li style="font-size:14px;color:var(--ink2);display:flex;gap:10px"><span style="color:var(--blue-m);font-weight:700;flex-shrink:0">→</span>Jhonny Villegas ya revisó contratos; cambios pendientes de reflejarse en app y superficies públicas.</li>
+      </ul>
+    </div>
+    <div>
+      <div class="infobox">
+        <strong>Lista de pagos realizados durante la prueba:</strong><br>
+        Rosbeny · Jhonny · Gladys · Luisa · Johanna Marcela Zapata · Andrés Holguín · Orlando · Hammer · Andrea Higuita Cardona.
+      </div>
+      <div class="warnbox" style="margin-top:10px">
+        <strong>Alerta activa:</strong> Algunas plantillas y automatizaciones viejas siguen activas o visibles y deben ser rectificadas antes del release.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 7. RUTA URGENTE ═══════════════ -->
+<div class="card">
+  <div class="sec-lbl">Sección 7</div>
+  <div class="sec-title">Ruta de Trabajo Urgente <span>Solo equipo G7Tech · Carlos Cárdenas · Aaron Murillo · David Rodríguez</span></div>
+
+  <!-- ROJO -->
+  <div class="sem-block">
+    <div class="sem-head rojo">
+      <span style="font-size:20px;line-height:1">🔴</span>
+      <h3>ROJO — Prioridad Crítica</h3>
+      <div class="sem-desc">Iniciar hoy mismo · Release de emergencia</div>
+    </div>
+    <div class="sem-rows">
+      <div class="sem-row">
+        <div class="sem-num rojo">1</div>
+        <div class="sem-body">
+          <strong>Unificación total de marca dentro de la app</strong>
+          <ul class="sem-ul">
+            <li>Eliminar G7Pay / G7BsPay / G7 BSP y cualquier nombre viejo</li>
+            <li>Actualizar headers, mensajes, onboarding, validación y assets antiguos</li>
+            <li>Corregir logos viejos en Didit y pantallas de verificación</li>
+            <li style="color:var(--amber);font-style:italic">P01 cerrada en Bitrix — QA mantiene seguimiento porque aún aparecieron rastros visibles de marca vieja</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">La app no muestra rastro de marca vieja.</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num rojo">2</div>
+        <div class="sem-body">
+          <strong>Recuperación de contraseña — flujo estable</strong>
+          <ul class="sem-ul">
+            <li>Agregar botón mostrar/ocultar contraseña</li>
+            <li>Mejorar visibilidad de campos durante el ingreso</li>
+            <li>Validar código de recuperación de manera confiable</li>
+            <li>Resolver fallos con usuarios ya registrados</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">Flujo de recuperación estable y claro.</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num rojo">3</div>
+        <div class="sem-body">
+          <strong>Wallet clara y estable</strong>
+          <ul class="sem-ul">
+            <li>CTA de crear/generar wallet más evidente</li>
+            <li>Corregir estados KYC / wallet aprobada</li>
+            <li>Arreglar scroll en Android</li>
+            <li>Mensaje claro cuando ya existe una wallet previa</li>
+            <li>Mantener QR y copy/paste impecables</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">Usuario completa wallet sin ayuda externa.</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num rojo">4</div>
+        <div class="sem-body">
+          <strong>Bloqueo por mínimo de liquidación</strong>
+          <ul class="sem-ul">
+            <li>Quitar, parametrizar o bypass controlado para QA y salida inmediata</li>
+            <li>Revisar por qué Carlos no tiene el bloqueo y los demás sí</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">Flujos de bajo monto pueden cerrarse.</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num rojo">5</div>
+        <div class="sem-body">
+          <strong>Soporte obligatorio — visible y con estados</strong>
+          <ul class="sem-ul">
+            <li>Mensajes claros: soporte faltante / cargado / validado / rechazado</li>
+            <li>Confirmación visual visible al subir soporte</li>
+            <li>Eliminar el rechazo silencioso sin explicación</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">Nadie queda rechazado sin entender la causa.</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num rojo">6</div>
+        <div class="sem-body">
+          <strong>Filtro inicial del producto — streaming adulto / otro</strong>
+          <ul class="sem-ul">
+            <li>Pregunta de perfilamiento al primer inicio</li>
+            <li>Streaming adulto → continúa en G7Cripto</li>
+            <li>Otro perfil → redirección a FOMENTOR</li>
+            <li style="color:var(--amber);font-style:italic">P05 figura actualizada/cerrada en Bitrix — el perfilamiento dentro de la app sigue pendiente y debe continuar en la ruta urgente</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Aaron Murillo</div><div class="resp-qa">QA: David Rodríguez</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">El usuario correcto entra al flujo correcto.</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num rojo">7</div>
+        <div class="sem-body">
+          <strong>Modo blanco como experiencia prioritaria</strong>
+          <ul class="sem-ul">
+            <li>Asegurar que el release se vea y funcione impecablemente en modo blanco</li>
+            <li>Si dark mode no queda estable, no publicarlo como opción visible</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">La experiencia del release es publicable.</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num rojo">8</div>
+        <div class="sem-body">
+          <strong>Respuestas rápidas / FAQ — revisión completa</strong>
+          <ul class="sem-ul">
+            <li>"Enviar mensaje" está correcto; las respuestas rápidas son pobres e insuficientes</li>
+            <li>Revisar una por una las preguntas y respuestas del módulo</li>
+            <li>Reescribir con preguntas reales del usuario, respuestas completas y lenguaje claro</li>
+            <li>No dejarlo como un FAQ decorativo</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Aaron Murillo</div><div class="resp-qa">QA: David Rodríguez</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">Módulo de ayuda útil y realmente resolutivo.</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num rojo">9</div>
+        <div class="sem-body">
+          <strong>Footer / texto institucional</strong>
+          <ul class="sem-ul">
+            <li>Corregir "Power by G7" / "Power by G7Tech" en toda la app</li>
+            <li>Definir una sola versión oficial del crédito tecnológico</li>
+            <li>Sugerencia → "Powered by G7Tech" — aplicar consistentemente</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Aaron Murillo</div><div class="resp-qa">QA: David Rodríguez</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">Footer limpio y consistente en toda la app.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NARANJA -->
+  <div class="sem-block">
+    <div class="sem-head naranja">
+      <span style="font-size:20px;line-height:1">🟠</span>
+      <h3>NARANJA — Prioridad Alta</h3>
+      <div class="sem-desc">Parche inmediato o release corto siguiente</div>
+    </div>
+    <div class="sem-rows">
+      <div class="sem-row">
+        <div class="sem-num naranja">10</div>
+        <div class="sem-body">
+          <strong>Tiendas — ficha pública coherente</strong>
+          <ul class="sem-ul">
+            <li>Nombre, subtítulo, descripción, screenshots y logo visible</li>
+            <li>Eliminar mensajes viejos y referencias no alineadas con G7Cripto</li>
+            <li style="color:var(--amber);font-style:italic">P03 cerrada en Bitrix — QA sigue este frente hasta limpiar por completo la ejecución pública</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Aaron Murillo</div><div class="resp-qa">QA: David Rodríguez</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num naranja">11</div>
+        <div class="sem-body">
+          <strong>Notificaciones — comportamiento unificado</strong>
+          <ul class="sem-ul">
+            <li>Unificar eventos: depósito, aprobación, monetización y liquidación</li>
+            <li>Correo / teléfono / push según aplique</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num naranja">12</div>
+        <div class="sem-body">
+          <strong>Dashboard y estados operativos completos</strong>
+          <ul class="sem-ul">
+            <li>Reflejar: wallet recibió fondos, soporte, aprobación, saldo USD, monetización y liquidación</li>
+            <li>Backoffice y app muestran el mismo estado</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num naranja">13</div>
+        <div class="sem-body">
+          <strong>Selector de plataforma en monetización</strong>
+          <ul class="sem-ul">
+            <li>Definir criterio único y explicarlo dentro del formulario</li>
+            <li>El usuario sabe qué plataforma elegir al monetizar</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num naranja">14</div>
+        <div class="sem-body">
+          <strong>Menú inferior y lateral — navegación limpia</strong>
+          <ul class="sem-ul">
+            <li>Reducir peso visual, mejorar visibilidad de íconos</li>
+            <li>Que no estorbe ni tape contenido</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num naranja">15</div>
+        <div class="sem-body">
+          <strong>Plantillas y automatizaciones viejas</strong>
+          <ul class="sem-ul">
+            <li>Limpiar mensajes heredados, correos viejos y automatizaciones no vigentes</li>
+            <li>Comunicación coherente con la versión actual del producto</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos / Aaron</div><div class="resp-qa">QA: David Rodríguez</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num naranja">16</div>
+        <div class="sem-body">
+          <strong>Ícono de perfil y coherencia de íconos</strong>
+          <ul class="sem-ul">
+            <li>Definir si el ícono superior de perfil tendrá función real; si no, reducirlo o retirarlo</li>
+            <li>Unificar escudo de seguridad, wallet y demás íconos bajo una misma familia visual y cromática</li>
+            <li>Idealmente alineados al azul principal de la app</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">Interfaz más coherente y pulida.</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num naranja">17</div>
+        <div class="sem-body">
+          <strong>FAQ funcional o retiro temporal</strong>
+          <ul class="sem-ul">
+            <li>Si "Respuestas rápidas" no se conectará a un blog/centro de ayuda real, retirarlo temporalmente</li>
+            <li>Si se mantiene, debe responder, abrir contenido útil y aportar tráfico a un destino funcional</li>
+            <li>No dejar botones decorativos que generen expectativas falsas</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos / Aaron</div><div class="resp-qa">QA: David Rodríguez</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">Módulo de ayuda sin botones decorativos.</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num naranja">18</div>
+        <div class="sem-body">
+          <strong>Consistencia tipográfica</strong>
+          <ul class="sem-ul">
+            <li>Revisar toda la app: TRM, encabezados, tarjetas y módulos como "Primeros pasos"</li>
+            <li>Confirmar que usen la misma familia tipográfica, pesos y jerarquías</li>
+            <li>Corregir cualquier variación no intencional</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">Interfaz uniforme y visualmente más pulida.</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num naranja">19</div>
+        <div class="sem-body">
+          <strong>Flujo de firma y aceptación digital</strong>
+          <ul class="sem-ul">
+            <li>Confirmar que el proceso de firma sea realmente fluido, digital y sin pasos manuales innecesarios</li>
+            <li>Consistente para el usuario final en todos los países</li>
+            <li style="color:var(--amber);font-style:italic">P06 cerrada en Bitrix — QA mantiene validación de ejecución real</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">Proceso de firma simple, claro y sin fricciones.</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num naranja">20</div>
+        <div class="sem-body">
+          <strong>Wallet post-aprobación y consistencia de flujo</strong>
+          <ul class="sem-ul">
+            <li>Validar creación automática de wallet tras aprobación</li>
+            <li>Claridad de estados, redirección y experiencia real del usuario</li>
+            <li style="color:var(--amber);font-style:italic">P07 cerrada en Bitrix — QA mantiene validación de experiencia real</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">Creación de wallet sin fricción tras aprobación.</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num naranja">21</div>
+        <div class="sem-body">
+          <strong>Wallets / KYC / saldos USD</strong>
+          <ul class="sem-ul">
+            <li>Confirmar que wallets propias, KYC Binance y visualización de saldos en USD funcionen de forma coherente</li>
+            <li style="color:var(--amber);font-style:italic">P08 cerrada en Bitrix — seguimiento activo por QA</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">Saldos y wallets consistentes en la experiencia real.</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num naranja">22</div>
+        <div class="sem-body">
+          <strong>Monetización y aprobación</strong>
+          <ul class="sem-ul">
+            <li>Seguir perfeccionando el flujo de soporte, revisión, aprobación, saldo USD, monetización y liquidación</li>
+            <li style="color:var(--amber);font-style:italic">P09 cerrada en Bitrix — seguimiento activo por QA</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">Flujo de monetización estable y entendible.</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num naranja">23</div>
+        <div class="sem-body">
+          <strong>Dashboard — análisis, corrección y cotización</strong>
+          <ul class="sem-ul">
+            <li>Pendiente de análisis por parte de Carlos Cárdenas — tratar como urgente</li>
+            <li>Abrir una ruta separada para tecnología, seguridad y actualización estructural del dashboard</li>
+            <li style="color:var(--red);font-style:italic;font-weight:600">P10 — PENDIENTE Y URGENTE en Bitrix</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa" style="color:var(--red);font-weight:600">URGENTE</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">Diagnóstico completo y ruta específica.</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num naranja">24</div>
+        <div class="sem-body">
+          <strong>Sistema de referidos</strong>
+          <ul class="sem-ul">
+            <li>Revisar y terminar el sistema; perfeccionar códigos de referidos y su lógica operativa</li>
+            <li style="color:var(--amber);font-style:italic">P11 — pendiente de perfeccionamiento en Bitrix</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">Referidos funcionales y listos para evolución.</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num naranja">25</div>
+        <div class="sem-body">
+          <strong>Contratos y textos legales</strong>
+          <ul class="sem-ul">
+            <li>Verificar que los cambios de Jhonny Villegas estén reflejados en app, textos visibles y flujos reales</li>
+            <li style="color:var(--amber);font-style:italic">P12 cerrada en Bitrix — QA verifica que los cambios sí estén reflejados en la experiencia final</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">Reflejo completo de ajustes legales.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VERDE -->
+  <div class="sem-block">
+    <div class="sem-head verde">
+      <span style="font-size:20px;line-height:1">🟢</span>
+      <h3>VERDE — Prioridad Media / Baja</h3>
+      <div class="sem-desc">Sprint corto de refinamiento</div>
+    </div>
+    <div class="sem-rows">
+      <div class="sem-row">
+        <div class="sem-num verde">26</div>
+        <div class="sem-body">
+          <strong>Optimización visual general</strong>
+          <ul class="sem-ul">
+            <li>Refinar espaciados, loaders, jerarquía en monetización/liquidación y menú lateral</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num verde">27</div>
+        <div class="sem-body">
+          <strong>Landings y conexión con filtro inicial</strong>
+          <ul class="sem-ul">
+            <li>Confirmar que páginas públicas y redirecciones estén totalmente alineadas con el nuevo flujo</li>
+            <li style="color:var(--amber);font-style:italic">P04 cerrada en Bitrix — validación QA continúa para asegurar consistencia entre promesa comercial y operación real</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Aaron Murillo</div><div class="resp-qa">QA: David Rodríguez</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num verde">28</div>
+        <div class="sem-body">
+          <strong>Regresión integral</strong>
+          <ul class="sem-ul">
+            <li>Android claro/oscuro · iPhone blanco · usuario nuevo · usuario registrado</li>
+            <li>Wallet, soporte, monetización, liquidación y notificaciones</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">David Rodríguez</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 8. IDEAS UX ═══════════════ -->
+<div class="card">
+  <div class="sec-lbl">Sección 8</div>
+  <div class="sec-title">Ideas para mejorar la experiencia del usuario</div>
+  <div class="ideas-grid">
+    <div class="idea">
+      <div class="idea-letter">A</div>
+      <div class="idea-title">Checklist visible dentro de la app</div>
+      <div class="idea-body">Crear wallet → Copiar dirección → Registrarla en plataforma → Esperar pago → Subir soporte → Monetizar → Liquidar. Guía paso a paso permanente.</div>
+    </div>
+    <div class="idea">
+      <div class="idea-letter">B</div>
+      <div class="idea-title">Línea de estados siempre visible</div>
+      <div class="idea-body"><span class="pill">Pago recibido</span> <span class="pill">Soporte cargado</span> <span class="pill">Soporte validado</span> <span class="pill">Saldo USD aprobado</span> <span class="pill">Listo para liquidar</span></div>
+    </div>
+    <div class="idea">
+      <div class="idea-letter">C</div>
+      <div class="idea-title">Explicar el botón Max y el selector de plataforma</div>
+      <div class="idea-body">Una línea corta explicando qué hace Max y qué plataforma debe escoger el usuario al monetizar reduce el 80% de las dudas operativas.</div>
+    </div>
+    <div class="idea">
+      <div class="idea-letter">D</div>
+      <div class="idea-title">Confirmaciones fuertes en eventos clave</div>
+      <div class="idea-body">Wallet creada · Pago recibido · Soporte cargado · Monetización aprobada · Liquidación enviada. Cada uno debe tener un mensaje visible y claro.</div>
+    </div>
+    <div class="idea">
+      <div class="idea-letter">E</div>
+      <div class="idea-title">Soporte obligatorio — mensaje explícito</div>
+      <div class="idea-body">"Para aprobar tu pago y reflejarlo en USD, debes subir el soporte del payout o venta desde la plataforma." Debe aparecer antes del formulario de monetización.</div>
+    </div>
+    <div class="idea">
+      <div class="idea-letter">F</div>
+      <div class="idea-title">Modo blanco como base recomendada</div>
+      <div class="idea-body">La app en modo blanco transmite más confianza y legibilidad. Mantenerlo como experiencia primaria publicada mientras dark mode se estabiliza.</div>
+    </div>
+    <div class="idea">
+      <div class="idea-letter">G</div>
+      <div class="idea-title">Respuestas rápidas reales</div>
+      <div class="idea-body">Reescribir el módulo con preguntas reales del usuario, respuestas completas y lenguaje claro. El FAQ no puede ser decorativo — debe resolver dudas operativas concretas.</div>
+    </div>
+    <div class="idea">
+      <div class="idea-letter">H</div>
+      <div class="idea-title">Ayudas contextuales en campos críticos</div>
+      <div class="idea-body">Agregar texto de apoyo corto debajo de: monto, plataforma, tipo de retiro, soporte requerido y botón Max. Reduce el 80% de las dudas en el formulario.</div>
+    </div>
+    <div class="idea">
+      <div class="idea-letter">I</div>
+      <div class="idea-title">Confirmaciones inequívocas en cada acción</div>
+      <div class="idea-body">Soporte cargado · Monetización enviada · Monetización aprobada · Liquidación solicitada · Pago enviado. Cada evento clave debe tener un mensaje visible y explícito.</div>
+    </div>
+    <div class="idea">
+      <div class="idea-letter">J</div>
+      <div class="idea-title">Mensajes de error accionables</div>
+      <div class="idea-body">Indicar qué faltó, qué se debe corregir y cuál es el siguiente paso. Nunca un error genérico sin instrucción clara de cómo resolverlo.</div>
+    </div>
+    <div class="idea">
+      <div class="idea-letter">K</div>
+      <div class="idea-title">Familia única de íconos</div>
+      <div class="idea-body">Definir un solo set para toda la app: mismo nivel de minimalismo, grosor y tono cromático entre wallet, seguridad, perfil y navegación. Alineados al azul principal de la marca.</div>
+    </div>
+    <div class="idea">
+      <div class="idea-letter">L</div>
+      <div class="idea-title">Eliminar elementos con expectativas falsas</div>
+      <div class="idea-body">Si el usuario ve un ícono de perfil o un botón de FAQ, debe poder usarlo realmente. Cualquier elemento sin función activa debe ocultarse hasta que esté operativo.</div>
+    </div>
+    <div class="idea">
+      <div class="idea-letter">M</div>
+      <div class="idea-title">Centro de ayuda real antes de activar el FAQ</div>
+      <div class="idea-body">Conectar el módulo de ayuda a un blog, base de conocimiento o FAQ web. Si ese destino no existe todavía, ocultar el acceso hasta que esté listo.</div>
+    </div>
+    <div class="idea">
+      <div class="idea-letter">N</div>
+      <div class="idea-title">Regla única de marca para el logo</div>
+      <div class="idea-body">Misma escala, mismas proporciones en toda la app. Las versiones claro/oscuro solo cambian de color por contraste — nunca de escala ni de proporción.</div>
+    </div>
+    <div class="idea">
+      <div class="idea-letter">O</div>
+      <div class="idea-title">Sistema tipográfico único</div>
+      <div class="idea-body">Una sola familia tipográfica para toda la app, con pesos claros para títulos, subtítulos y criterios consistentes en TRM, cards, formularios y módulos operativos.</div>
+    </div>
+    <div class="idea">
+      <div class="idea-letter">P</div>
+      <div class="idea-title">Checklist de publicación — cambio de propietario</div>
+      <div class="idea-body">Documentar internamente el proceso de cambio de propietario en Apple y Google: qué documentos sí se exigen, cuáles no, y cómo evitar reprocesos futuros en cualquier transferencia de titularidad.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ 9. CIERRE ═══════════════ -->
+<div class="cierre">
+  <h2>Cierre ejecutivo</h2>
+  <p>La distancia entre lo prometido por la ruta estratégica del 24 de marzo y la experiencia real de los usuarios ya es <strong style="color:#fff">mucho menor</strong>: la app ya crea wallets, ya recibió fondos reales, ya mostró saldos y ya recorrió monetización/liquidación en varios casos. El problema ya no es inexistencia del flujo, sino <strong style="color:#fff">claridad, consistencia y control</strong>.</p>
+  <p>El foco del equipo G7Tech debe ser inmediato.</p>
+  <p style="font-weight:600;color:#fff;font-size:15px;margin-bottom:14px">Release de emergencia = prioridad de hoy:</p>
+  <div class="release-list">
+    <div class="release-item"><div class="release-dot"></div>Limpiar marca — eliminar G7Pay / G7BsPay en toda la app</div>
+    <div class="release-item"><div class="release-dot"></div>Estabilizar acceso — recuperación de contraseña funcional</div>
+    <div class="release-item"><div class="release-dot"></div>Aclarar wallet — CTA claro, scroll Android, estados legibles</div>
+    <div class="release-item"><div class="release-dot"></div>Soporte obligatorio visible — confirmado y con estado</div>
+    <div class="release-item"><div class="release-dot"></div>Corregir notificaciones — unificar push, email y SMS</div>
+    <div class="release-item"><div class="release-dot"></div>Destrabar liquidación — parametrizar mínimo para QA</div>
+    <div class="release-item"><div class="release-dot"></div>Publicar versión visualmente confiable en modo blanco</div>
+  </div>
+</div>
+
+<div class="footer">
+  Documento consolidado con base en la información del chat, actualizaciones Bitrix hasta el 25 de abril de 2026 y contraste contra la Ruta de Trabajo G7Cripto v4 del 24 de marzo de 2026.<br>
+  <strong>G7Fintech SAS · G7Cripto · Documento confidencial — uso exclusivo equipo G7BS</strong>
+</div>
+
+</div><!-- /wrap -->
 </body>
 </html>
