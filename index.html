@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reporte QA G7Cripto — v3 · 24 Abril 2026</title>
+<title>Reporte QA G7Cripto — v5 · 24 Abril 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -274,8 +274,8 @@ a{color:var(--blue-m);text-decoration:none}
   </div>
   <div class="kpi-card">
     <div class="kpi-label">Puntos de ruta</div>
-    <div class="kpi-val">18</div>
-    <div class="kpi-sub">🔴×9 · 🟠×6 · 🟢×3</div>
+    <div class="kpi-val">21</div>
+    <div class="kpi-sub">🔴×9 · 🟠×9 · 🟢×3</div>
   </div>
   <div class="kpi-card">
     <div class="kpi-label">Release objetivo</div>
@@ -539,6 +539,11 @@ a{color:var(--blue-m);text-decoration:none}
         <li style="font-size:14px;color:var(--ink2);display:flex;gap:10px"><span style="color:var(--blue-m);font-weight:700;flex-shrink:0">→</span>Reporte QA + ruta urgente compartidos con el equipo para iniciar cambios de inmediato.</li>
         <li style="font-size:14px;color:var(--ink2);display:flex;gap:10px"><span style="color:var(--blue-m);font-weight:700;flex-shrink:0">→</span>Carlos indicó intención de trabajar cambios este fin de semana para publicar el domingo y tener versión activa el lunes.</li>
         <li style="font-size:14px;color:var(--ink2);display:flex;gap:10px"><span style="color:var(--blue-m);font-weight:700;flex-shrink:0">→</span>Kevin debe revisar logo más grande/visible y corregir tonos que no corresponden a la marca.</li>
+        <li style="font-size:14px;color:var(--ink2);display:flex;gap:10px"><span style="color:var(--blue-m);font-weight:700;flex-shrink:0">→</span><strong>Kevin Barragán — observaciones de diseño/UI:</strong> el ícono superior de perfil resulta invasivo y sin función clara; si no tendrá función real, recomienda retirarlo.</li>
+        <li style="font-size:14px;color:var(--ink2);display:flex;gap:10px"><span style="color:var(--blue-m);font-weight:700;flex-shrink:0">→</span>Kevin observó que el ícono de Wallet y el escudo de seguridad no siguen la misma lógica visual: deben unificarse en estilo y color, idealmente alineados al azul principal de la app.</li>
+        <li style="font-size:14px;color:var(--ink2);display:flex;gap:10px"><span style="color:var(--blue-m);font-weight:700;flex-shrink:0">→</span>Kevin indicó que el tamaño del logo debe respetarse y mantenerse consistente en modo claro y oscuro; pueden cambiar colores por contraste, pero no la escala.</li>
+        <li style="font-size:14px;color:var(--ink2);display:flex;gap:10px"><span style="color:var(--blue-m);font-weight:700;flex-shrink:0">→</span>Kevin confirmó que el botón "Respuestas rápidas" actualmente no tiene funcionalidad. Si no se conectará a un blog/centro de ayuda real, recomienda retirarlo.</li>
+        <li style="font-size:14px;color:var(--ink2);display:flex;gap:10px"><span style="color:var(--blue-m);font-weight:700;flex-shrink:0">→</span>Kevin pidió revisar la consistencia tipográfica, especialmente en el bloque de TRM y en módulos como "Primeros pasos", para confirmar que toda la interfaz use la misma familia tipográfica, pesos y jerarquías.</li>
         <li style="font-size:14px;color:var(--ink2);display:flex;gap:10px"><span style="color:var(--blue-m);font-weight:700;flex-shrink:0">→</span>Jhonny Villegas ya revisó contratos; cambios pendientes de reflejarse en app y superficies públicas.</li>
       </ul>
     </div>
@@ -754,6 +759,42 @@ a{color:var(--blue-m);text-decoration:none}
         </div>
         <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos / Aaron</div><div class="resp-qa">QA: David Rodríguez</div></div>
       </div>
+      <div class="sem-row">
+        <div class="sem-num naranja">16</div>
+        <div class="sem-body">
+          <strong>Ícono de perfil y coherencia de íconos</strong>
+          <ul class="sem-ul">
+            <li>Definir si el ícono superior de perfil tendrá función real; si no, reducirlo o retirarlo</li>
+            <li>Unificar escudo de seguridad, wallet y demás íconos bajo una misma familia visual y cromática</li>
+            <li>Idealmente alineados al azul principal de la app</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">Interfaz más coherente y pulida.</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num naranja">17</div>
+        <div class="sem-body">
+          <strong>FAQ funcional o retiro temporal</strong>
+          <ul class="sem-ul">
+            <li>Si "Respuestas rápidas" no se conectará a un blog/centro de ayuda real, retirarlo temporalmente</li>
+            <li>Si se mantiene, debe responder, abrir contenido útil y aportar tráfico a un destino funcional</li>
+            <li>No dejar botones decorativos que generen expectativas falsas</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos / Aaron</div><div class="resp-qa">QA: David Rodríguez</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">Módulo de ayuda sin botones decorativos.</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num naranja">18</div>
+        <div class="sem-body">
+          <strong>Consistencia tipográfica</strong>
+          <ul class="sem-ul">
+            <li>Revisar toda la app: TRM, encabezados, tarjetas y módulos como "Primeros pasos"</li>
+            <li>Confirmar que usen la misma familia tipográfica, pesos y jerarquías</li>
+            <li>Corregir cualquier variación no intencional</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">Interfaz uniforme y visualmente más pulida.</div></div>
+      </div>
     </div>
   </div>
 
@@ -766,7 +807,7 @@ a{color:var(--blue-m);text-decoration:none}
     </div>
     <div class="sem-rows">
       <div class="sem-row">
-        <div class="sem-num verde">16</div>
+        <div class="sem-num verde">19</div>
         <div class="sem-body">
           <strong>Optimización visual general</strong>
           <ul class="sem-ul">
@@ -776,7 +817,7 @@ a{color:var(--blue-m);text-decoration:none}
         <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div></div>
       </div>
       <div class="sem-row">
-        <div class="sem-num verde">17</div>
+        <div class="sem-num verde">20</div>
         <div class="sem-body">
           <strong>Landings y conexión con filtro inicial</strong>
           <ul class="sem-ul">
@@ -786,7 +827,7 @@ a{color:var(--blue-m);text-decoration:none}
         <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Aaron Murillo</div><div class="resp-qa">QA: David Rodríguez</div></div>
       </div>
       <div class="sem-row">
-        <div class="sem-num verde">18</div>
+        <div class="sem-num verde">21</div>
         <div class="sem-body">
           <strong>Regresión integral</strong>
           <ul class="sem-ul">
@@ -854,6 +895,31 @@ a{color:var(--blue-m);text-decoration:none}
       <div class="idea-letter">J</div>
       <div class="idea-title">Mensajes de error accionables</div>
       <div class="idea-body">Indicar qué faltó, qué se debe corregir y cuál es el siguiente paso. Nunca un error genérico sin instrucción clara de cómo resolverlo.</div>
+    </div>
+    <div class="idea">
+      <div class="idea-letter">K</div>
+      <div class="idea-title">Familia única de íconos</div>
+      <div class="idea-body">Definir un solo set para toda la app: mismo nivel de minimalismo, grosor y tono cromático entre wallet, seguridad, perfil y navegación. Alineados al azul principal de la marca.</div>
+    </div>
+    <div class="idea">
+      <div class="idea-letter">L</div>
+      <div class="idea-title">Eliminar elementos con expectativas falsas</div>
+      <div class="idea-body">Si el usuario ve un ícono de perfil o un botón de FAQ, debe poder usarlo realmente. Cualquier elemento sin función activa debe ocultarse hasta que esté operativo.</div>
+    </div>
+    <div class="idea">
+      <div class="idea-letter">M</div>
+      <div class="idea-title">Centro de ayuda real antes de activar el FAQ</div>
+      <div class="idea-body">Conectar el módulo de ayuda a un blog, base de conocimiento o FAQ web. Si ese destino no existe todavía, ocultar el acceso hasta que esté listo.</div>
+    </div>
+    <div class="idea">
+      <div class="idea-letter">N</div>
+      <div class="idea-title">Regla única de marca para el logo</div>
+      <div class="idea-body">Misma escala, mismas proporciones en toda la app. Las versiones claro/oscuro solo cambian de color por contraste — nunca de escala ni de proporción.</div>
+    </div>
+    <div class="idea">
+      <div class="idea-letter">O</div>
+      <div class="idea-title">Sistema tipográfico único</div>
+      <div class="idea-body">Una sola familia tipográfica para toda la app, con pesos claros para títulos, subtítulos y criterios consistentes en TRM, cards, formularios y módulos operativos.</div>
     </div>
   </div>
 </div>
