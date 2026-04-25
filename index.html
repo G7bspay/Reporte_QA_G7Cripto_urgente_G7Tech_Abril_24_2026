@@ -205,7 +205,7 @@ a{color:var(--blue-m);text-decoration:none}
 .successbox{background:var(--green-l);border:1px solid #A7F3D0;border-radius:var(--r-sm);padding:14px 18px;margin:14px 0;font-size:13.5px;color:var(--green);line-height:1.55}
 
 /* ─── IDEAS ──────────────────────────────────────────────── */
-.ideas-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ideas-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
 .idea{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;box-shadow:var(--shadow)}
 .idea-letter{font-family:'DM Serif Display',serif;font-size:34px;color:var(--blue-l);line-height:1;margin-bottom:8px}
 .idea-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:6px}
@@ -270,8 +270,8 @@ a{color:var(--blue-m);text-decoration:none}
   </div>
   <div class="kpi-card">
     <div class="kpi-label">Puntos de ruta</div>
-    <div class="kpi-val">20</div>
-    <div class="kpi-sub">🔴×7 · 🟠×6 · 🟡×4 · 🟢×3</div>
+    <div class="kpi-val">18</div>
+    <div class="kpi-sub">🔴×9 · 🟠×6 · 🟢×3</div>
   </div>
   <div class="kpi-card">
     <div class="kpi-label">Release objetivo</div>
@@ -292,6 +292,7 @@ a{color:var(--blue-m);text-decoration:none}
     <div>
       <p style="font-size:14px;color:var(--ink2);margin-bottom:12px">Sin embargo, el producto <strong>todavía no está listo para relanzarse sin un parche urgente</strong>: persisten fallas de marca, dark mode, recuperación de contraseña, claridad del flujo wallet/soporte, notificaciones inconsistentes y bloqueo por monto mínimo de liquidación.</p>
       <div class="warnbox">⚠️ <strong>Recomendación:</strong> iniciar cambios hoy mismo y usar <strong>modo blanco</strong> como experiencia visual prioritaria mientras dark mode termina de estabilizarse.</div>
+    <div class="infobox" style="margin-top:12px">📌 <strong>Actualización QA:</strong> la sección <em>Enviar mensaje</em> dentro de soporte se considera correcta. Las <em>Respuestas rápidas</em> quedan observadas por contenido pobre y deben revisarse antes de darse por aprobadas. Adicionalmente, el footer <em>"Power by G7 / Power by G7Tech"</em> es un hallazgo transversal que debe sustituirse por una versión profesional y uniforme en toda la app.</div>
     </div>
   </div>
 </div>
@@ -646,6 +647,31 @@ a{color:var(--blue-m);text-decoration:none}
         </div>
         <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">La experiencia del release es publicable.</div></div>
       </div>
+      <div class="sem-row">
+        <div class="sem-num rojo">8</div>
+        <div class="sem-body">
+          <strong>Respuestas rápidas / FAQ — revisión completa</strong>
+          <ul class="sem-ul">
+            <li>"Enviar mensaje" está correcto; las respuestas rápidas son pobres e insuficientes</li>
+            <li>Revisar una por una las preguntas y respuestas del módulo</li>
+            <li>Reescribir con preguntas reales del usuario, respuestas completas y lenguaje claro</li>
+            <li>No dejarlo como un FAQ decorativo</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Aaron Murillo</div><div class="resp-qa">QA: David Rodríguez</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">Módulo de ayuda útil y realmente resolutivo.</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num rojo">9</div>
+        <div class="sem-body">
+          <strong>Footer / texto institucional</strong>
+          <ul class="sem-ul">
+            <li>Corregir "Power by G7" / "Power by G7Tech" en toda la app</li>
+            <li>Definir una sola versión oficial del crédito tecnológico</li>
+            <li>Sugerencia → "Powered by G7Tech" — aplicar consistentemente</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Aaron Murillo</div><div class="resp-qa">QA: David Rodríguez</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">Footer limpio y consistente en toda la app.</div></div>
+      </div>
     </div>
   </div>
 
@@ -658,7 +684,7 @@ a{color:var(--blue-m);text-decoration:none}
     </div>
     <div class="sem-rows">
       <div class="sem-row">
-        <div class="sem-num naranja">8</div>
+        <div class="sem-num naranja">10</div>
         <div class="sem-body">
           <strong>Tiendas — ficha pública coherente</strong>
           <ul class="sem-ul">
@@ -669,7 +695,7 @@ a{color:var(--blue-m);text-decoration:none}
         <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Aaron Murillo</div><div class="resp-qa">QA: David Rodríguez</div></div>
       </div>
       <div class="sem-row">
-        <div class="sem-num naranja">9</div>
+        <div class="sem-num naranja">11</div>
         <div class="sem-body">
           <strong>Notificaciones — comportamiento unificado</strong>
           <ul class="sem-ul">
@@ -680,7 +706,7 @@ a{color:var(--blue-m);text-decoration:none}
         <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div></div>
       </div>
       <div class="sem-row">
-        <div class="sem-num naranja">10</div>
+        <div class="sem-num naranja">12</div>
         <div class="sem-body">
           <strong>Dashboard y estados operativos completos</strong>
           <ul class="sem-ul">
@@ -691,7 +717,7 @@ a{color:var(--blue-m);text-decoration:none}
         <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div></div>
       </div>
       <div class="sem-row">
-        <div class="sem-num naranja">11</div>
+        <div class="sem-num naranja">13</div>
         <div class="sem-body">
           <strong>Selector de plataforma en monetización</strong>
           <ul class="sem-ul">
@@ -702,7 +728,7 @@ a{color:var(--blue-m);text-decoration:none}
         <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div></div>
       </div>
       <div class="sem-row">
-        <div class="sem-num naranja">12</div>
+        <div class="sem-num naranja">14</div>
         <div class="sem-body">
           <strong>Menú inferior y lateral — navegación limpia</strong>
           <ul class="sem-ul">
@@ -713,7 +739,7 @@ a{color:var(--blue-m);text-decoration:none}
         <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div></div>
       </div>
       <div class="sem-row">
-        <div class="sem-num naranja">13</div>
+        <div class="sem-num naranja">15</div>
         <div class="sem-body">
           <strong>Plantillas y automatizaciones viejas</strong>
           <ul class="sem-ul">
@@ -735,7 +761,7 @@ a{color:var(--blue-m);text-decoration:none}
     </div>
     <div class="sem-rows">
       <div class="sem-row">
-        <div class="sem-num verde">14</div>
+        <div class="sem-num verde">16</div>
         <div class="sem-body">
           <strong>Optimización visual general</strong>
           <ul class="sem-ul">
@@ -745,7 +771,7 @@ a{color:var(--blue-m);text-decoration:none}
         <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div></div>
       </div>
       <div class="sem-row">
-        <div class="sem-num verde">15</div>
+        <div class="sem-num verde">17</div>
         <div class="sem-body">
           <strong>Landings y conexión con filtro inicial</strong>
           <ul class="sem-ul">
@@ -755,7 +781,7 @@ a{color:var(--blue-m);text-decoration:none}
         <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Aaron Murillo</div><div class="resp-qa">QA: David Rodríguez</div></div>
       </div>
       <div class="sem-row">
-        <div class="sem-num verde">16</div>
+        <div class="sem-num verde">18</div>
         <div class="sem-body">
           <strong>Regresión integral</strong>
           <ul class="sem-ul">
@@ -803,6 +829,26 @@ a{color:var(--blue-m);text-decoration:none}
       <div class="idea-letter">F</div>
       <div class="idea-title">Modo blanco como base recomendada</div>
       <div class="idea-body">La app en modo blanco transmite más confianza y legibilidad. Mantenerlo como experiencia primaria publicada mientras dark mode se estabiliza.</div>
+    </div>
+    <div class="idea">
+      <div class="idea-letter">G</div>
+      <div class="idea-title">Respuestas rápidas reales</div>
+      <div class="idea-body">Reescribir el módulo con preguntas reales del usuario, respuestas completas y lenguaje claro. El FAQ no puede ser decorativo — debe resolver dudas operativas concretas.</div>
+    </div>
+    <div class="idea">
+      <div class="idea-letter">H</div>
+      <div class="idea-title">Ayudas contextuales en campos críticos</div>
+      <div class="idea-body">Agregar texto de apoyo corto debajo de: monto, plataforma, tipo de retiro, soporte requerido y botón Max. Reduce el 80% de las dudas en el formulario.</div>
+    </div>
+    <div class="idea">
+      <div class="idea-letter">I</div>
+      <div class="idea-title">Confirmaciones inequívocas en cada acción</div>
+      <div class="idea-body">Soporte cargado · Monetización enviada · Monetización aprobada · Liquidación solicitada · Pago enviado. Cada evento clave debe tener un mensaje visible y explícito.</div>
+    </div>
+    <div class="idea">
+      <div class="idea-letter">J</div>
+      <div class="idea-title">Mensajes de error accionables</div>
+      <div class="idea-body">Indicar qué faltó, qué se debe corregir y cuál es el siguiente paso. Nunca un error genérico sin instrucción clara de cómo resolverlo.</div>
     </div>
   </div>
 </div>
