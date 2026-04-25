@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reporte QA G7Cripto — v9 · 25 Abril 2026</title>
+<title>Reporte QA G7Cripto — v12 · 25 Abril 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -274,8 +274,8 @@ a{color:var(--blue-m);text-decoration:none}
   </div>
   <div class="kpi-card">
     <div class="kpi-label">Puntos de ruta</div>
-    <div class="kpi-val">28</div>
-    <div class="kpi-sub">🔴×9 · 🟠×16 · 🟢×3</div>
+    <div class="kpi-val">30</div>
+    <div class="kpi-sub">🔴×9 · 🟠×18 · 🟢×3</div>
   </div>
   <div class="kpi-card">
     <div class="kpi-label">Release objetivo</div>
@@ -300,6 +300,7 @@ a{color:var(--blue-m);text-decoration:none}
       <p style="font-size:14px;color:var(--ink2);margin-bottom:12px">Sin embargo, el producto <strong>todavía no está listo para relanzarse sin un parche urgente</strong>: persisten fallas de marca, dark mode, recuperación de contraseña, claridad del flujo wallet/soporte, notificaciones inconsistentes y bloqueo por monto mínimo de liquidación.</p>
       <div class="warnbox">⚠️ <strong>Recomendación:</strong> iniciar cambios hoy mismo y usar <strong>modo blanco</strong> como experiencia visual prioritaria mientras dark mode termina de estabilizarse.</div>
     <div class="infobox" style="margin-top:12px">📌 <strong>Actualización QA:</strong> la sección <em>Enviar mensaje</em> dentro de soporte se considera correcta. Las <em>Respuestas rápidas</em> quedan observadas por contenido pobre y deben revisarse antes de darse por aprobadas. Adicionalmente, el footer <em>"Power by G7 / Power by G7Tech"</em> es un hallazgo transversal que debe sustituirse por una versión profesional y uniforme en toda la app.</div>
+    <div class="warnbox" style="margin-top:10px">📱 <strong>Actualización pública en tiendas:</strong> la revisión de App Store desde iPhone confirma que la <strong>descripción de la app debe cambiarse con urgencia</strong> — conserva textos heredados de G7BSPay y narrativa operativa desactualizada. Varios metadatos públicos siguen sin corregir: desarrollador visible, copyright, idioma declarado, enlace de soporte y apps relacionadas. Por criterio de QA, se debe asumir que los mismos problemas pueden estar presentes también en Android y <strong>revisar/corregir ambas tiendas en paralelo</strong>.</div>
     </div>
   </div>
 </div>
@@ -703,7 +704,9 @@ a{color:var(--blue-m);text-decoration:none}
           <strong>Tiendas — ficha pública coherente</strong>
           <ul class="sem-ul">
             <li>Nombre, subtítulo, descripción, screenshots y logo visible</li>
-            <li>Eliminar mensajes viejos y referencias no alineadas con G7Cripto</li>
+            <li><strong style="color:var(--red)">Urgente:</strong> la descripción pública conserva textos heredados de G7BSPay y narrativa operativa desactualizada — debe corregirse de inmediato</li>
+            <li>Revisar y corregir en ambas tiendas: desarrollador visible, copyright, idioma declarado, enlace de soporte y apps relacionadas</li>
+            <li>Corregir en iPhone y Android en paralelo — no asumir que están iguales</li>
             <li style="color:var(--amber);font-style:italic">P03 cerrada en Bitrix — QA sigue este frente hasta limpiar por completo la ejecución pública</li>
           </ul>
         </div>
@@ -880,6 +883,32 @@ a{color:var(--blue-m);text-decoration:none}
         </div>
         <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">Reflejo completo de ajustes legales.</div></div>
       </div>
+      <div class="sem-row">
+        <div class="sem-num naranja">26</div>
+        <div class="sem-body">
+          <strong>WhatsApp Business — canal de atención</strong>
+          <ul class="sem-ul">
+            <li>Actualizar nombre del contacto: reemplazar "G7BSPay Latam / G7BSpay" por G7Cripto</li>
+            <li>Actualizar foto de perfil y logo alineados a la marca actual</li>
+            <li>Revisar y actualizar mensaje automático de bienvenida</li>
+            <li>El canal de atención es una extensión del producto — debe verse y comunicar igual que la app</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos / Aaron</div><div class="resp-qa">QA: David Rodríguez</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">Punto de contacto externo alineado con G7Cripto.</div></div>
+      </div>
+      <div class="sem-row">
+        <div class="sem-num naranja">27</div>
+        <div class="sem-body">
+          <strong>App Store iPhone / Google Play — corrección pública urgente</strong>
+          <ul class="sem-ul">
+            <li><strong style="color:var(--red)">Urgente:</strong> cambiar la descripción pública — texto heredado de G7BSPay con narrativa desactualizada (Wire Transfer, ACH, exportación, contrato comercial)</li>
+            <li>Corregir: desarrollador visible, copyright, idioma declarado, enlace externo/soporte y apps del desarrollador</li>
+            <li>Verificar si estos errores están replicados en Android y corregir ambas tiendas en paralelo</li>
+            <li>Tratar las fichas de tienda como parte del producto — misma rigurosidad que la app</li>
+          </ul>
+        </div>
+        <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Aaron Murillo</div><div class="resp-qa">QA: David Rodríguez</div><div class="resp-qa" style="color:var(--green);margin-top:4px;font-size:11px">Presencia pública limpia y consistente en ambas tiendas.</div></div>
+      </div>
     </div>
   </div>
 
@@ -892,7 +921,7 @@ a{color:var(--blue-m);text-decoration:none}
     </div>
     <div class="sem-rows">
       <div class="sem-row">
-        <div class="sem-num verde">26</div>
+        <div class="sem-num verde">28</div>
         <div class="sem-body">
           <strong>Optimización visual general</strong>
           <ul class="sem-ul">
@@ -902,7 +931,7 @@ a{color:var(--blue-m);text-decoration:none}
         <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Carlos Cárdenas</div><div class="resp-qa">QA: David Rodríguez</div></div>
       </div>
       <div class="sem-row">
-        <div class="sem-num verde">27</div>
+        <div class="sem-num verde">29</div>
         <div class="sem-body">
           <strong>Landings y conexión con filtro inicial</strong>
           <ul class="sem-ul">
@@ -913,7 +942,7 @@ a{color:var(--blue-m);text-decoration:none}
         <div class="sem-resp"><div class="resp-lbl">Responsable</div><div class="resp-name">Aaron Murillo</div><div class="resp-qa">QA: David Rodríguez</div></div>
       </div>
       <div class="sem-row">
-        <div class="sem-num verde">28</div>
+        <div class="sem-num verde">30</div>
         <div class="sem-body">
           <strong>Regresión integral</strong>
           <ul class="sem-ul">
@@ -1011,6 +1040,21 @@ a{color:var(--blue-m);text-decoration:none}
       <div class="idea-letter">P</div>
       <div class="idea-title">Checklist de publicación — cambio de propietario</div>
       <div class="idea-body">Documentar internamente el proceso de cambio de propietario en Apple y Google: qué documentos sí se exigen, cuáles no, y cómo evitar reprocesos futuros en cualquier transferencia de titularidad.</div>
+    </div>
+    <div class="idea">
+      <div class="idea-letter">Q</div>
+      <div class="idea-title">WhatsApp Business como extensión de la app</div>
+      <div class="idea-body">Tratar los canales externos como parte integral del producto: nombre del contacto, foto de perfil, mensaje de bienvenida y tono deben seguir la misma marca y lógica operativa de G7Cripto.</div>
+    </div>
+    <div class="idea">
+      <div class="idea-letter">R</div>
+      <div class="idea-title">Fichas de tienda = parte del producto</div>
+      <div class="idea-body">App Store y Google Play no son un anexo. Descripción, copyright, desarrollador visible, idioma, enlaces y apps relacionadas deben revisarse con la misma rigurosidad que la app en cada release.</div>
+    </div>
+    <div class="idea">
+      <div class="idea-letter">S</div>
+      <div class="idea-title">Revisión cruzada iPhone ↔ Android en cada actualización</div>
+      <div class="idea-body">Definir una revisión cruzada obligatoria entre tiendas cada vez que se actualice una de ellas, para detectar rápido si un error quedó corregido en una plataforma pero no en la otra.</div>
     </div>
   </div>
 </div>
